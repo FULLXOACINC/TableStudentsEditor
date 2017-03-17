@@ -2,8 +2,11 @@ package Window;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
+import java.util.Arrays;
 import java.util.List;
 /**
  * Created by alex on 15.3.17.
@@ -13,6 +16,7 @@ public class StudentTable extends JComponent{
     private TableModel tableModel;
     private JScrollPane scrollTable;
     private int currentPage = 1;
+    private int pages=1;
     private int studentOnPage = 10;
     private int heightTable;
 
@@ -34,13 +38,14 @@ public class StudentTable extends JComponent{
             }
         });
         add(scrollTable);
-//        add(makeToolsPanel());
+        add(makeToolsPanel());
     }
 
     private JPanel makeTable(){
         JPanel table = new JPanel();
         table.setLayout(new GridBagLayout());
         List<Student> students = tableModel.getStudents();
+        int countStudent=0;
         AddComponent.add(table, "ФИО", 0, 0, 1, 3);
         AddComponent.add(table, "Группа", 1, 0, 1, 3);
         AddComponent.add(table, "Общественная работа", 2, 0, tableModel.SEMESTER_NUMBER * 2, 1);
@@ -52,16 +57,58 @@ public class StudentTable extends JComponent{
         for (int y = lineInHeaderTable, student = firstStudentOnPage;
              y < studentOnPage + lineInHeaderTable && student < students.size();
              y++, student++) {
-//            tableModel.setNumberMaxExaminations(students.get(student).getExaminations().size());
+            countStudent++;
             for (int i = 0; i < tableModel.SEMESTER_NUMBER+2 ; i++) {
                 String write = getFieldForStudent(students.get(student), i);
                 AddComponent.add(table, write, i, y, 1, 1);
             }
         }
+        AddComponent.add(table, "Страница:"+currentPage+"/"+getPages()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
         return table;
     }
 
+    private JToolBar makeToolsPanel() {
 
+        JToolBar panel = new JToolBar();
+        panel.add(AddComponent.makeButton(new JButton(), "first.png", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                firstPage();
+            }
+        }));
+
+        panel.add(AddComponent.makeButton(new JButton(), "last.png", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                lastPage();
+            }
+        }));
+        panel.add(AddComponent.makeButton(new JButton(), "prev.png", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                prevPage();
+            }
+        }));
+        panel.add(AddComponent.makeButton(new JButton(), "next.png", new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                nextPage();
+            }
+        }));
+        String[] size = {"10", "20", "30", "40", "50"};
+        JComboBox sizeBox = new JComboBox(size);
+        sizeBox.setSelectedIndex(Arrays.asList(size).indexOf(Integer.toString(studentOnPage)));
+        sizeBox.setMaximumSize(new Dimension(70,100));
+        sizeBox.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JComboBox cb = (JComboBox)e.getSource();
+                String change = (String) cb.getSelectedItem();
+                int size=Integer.parseInt(change);
+                firstPage();
+                setStudentOnPage(size);
+                updateComponent();
+            }
+        });
+
+        panel.add(sizeBox);
+        return panel;
+    }
 
     public String getFieldForStudent(Student student, int i) {
         if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getMiddleName();
@@ -133,6 +180,7 @@ public class StudentTable extends JComponent{
     }
 
     public void updateComponent(){
+        pages=(int)Math.ceil(tableModel.getStudents().size()/(double)studentOnPage);
         removeAll();
         makePanel();
         revalidate();
@@ -140,18 +188,17 @@ public class StudentTable extends JComponent{
     }
 
     private void updateScrollTable() {
+
         scrollTable.revalidate();
         scrollTable.repaint();
     }
 
 
-
-    private boolean canChangeNumberExam(String change) {
-        return true;
-    }
-
     public void setStudentOnPage(int studentOnPage) {
         this.studentOnPage = studentOnPage;
     }
 
+    public int getPages() {
+        return pages;
+    }
 }

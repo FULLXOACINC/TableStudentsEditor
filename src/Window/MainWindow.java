@@ -11,36 +11,17 @@ import java.awt.event.*;
  */
 public class MainWindow {
     private final StudentTable studentTable;
-    private JScrollPane scrollPanel;
     private JFrame frame;
-    private TablePanel tablePanel;
 
     public MainWindow() {
-//        frame = new JFrame("StudentTableEditor");
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        tablePanel = new TablePanel();
-//        scrollPanel = new JScrollPane(tablePanel);
-//        JToolBar menuPanel = createMenuPanel();
-//        JMenuBar menuBar = createMenuBar();
-//        frame.setJMenuBar(menuBar);
-//
-//        frame.add(menuPanel,BorderLayout.PAGE_START);
-//        frame.add(scrollPanel, BorderLayout.CENTER);
-//        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        frame.setUndecorated(true);
-//        frame.setFocusable(true);
-//        frame.setVisible(true);
-//        frame.setResizable(true);
+
         frame = new JFrame("Student Table");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setJMenuBar(createFileMenu());
         frame.add(createMenuPanel(), BorderLayout.PAGE_START);
         studentTable = new StudentTable();
-//        fileHandler = new FileHandler(this);
         frame.add(studentTable, BorderLayout.CENTER);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
-
 
     }
 
@@ -60,67 +41,22 @@ public class MainWindow {
         toolBar.addSeparator();
         toolBar.add(makeButton(new JButton(), "add.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("add");
+                new AddDialog(studentTable);
 
             }
         }));
         toolBar.add(makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("delete");
-                studentTable.getTableModel().getStudents().remove(0);
-                studentTable.updateComponent();
+//                studentTable.getTableModel().getStudents().remove(0);
+//                studentTable.updateComponent();
             }
         }));
         toolBar.add(makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("search");
+                new SearchDialog(studentTable);
 
             }
         }));
-        toolBar.addSeparator();
-        toolBar.add(makeButton(new JButton(), "prev.png", new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("prev");
-                studentTable.prevPage();
-                studentTable.updateComponent();
-            }
-        }));
-        toolBar.add(makeButton(new JButton(), "next.png", new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("next");
-                studentTable.nextPage();
-                studentTable.updateComponent();
-            }
-        }));
-        toolBar.addSeparator();
-        toolBar.add(makeButton(new JButton(), "first.png", new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("first");
-                studentTable.firstPage();
-                studentTable.updateComponent();
-            }
-        }));
-        toolBar.add(makeButton(new JButton(), "last.png", new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("last");
-                studentTable.lastPage();
-                studentTable.updateComponent();
-            }
-        }));
-
-        String[] sizeFont = {"10", "20", "30", "40", "50"};
-        JComboBox sizeBox = new JComboBox(sizeFont);
-        sizeBox.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox)e.getSource();
-                String change = (String) cb.getSelectedItem();
-                int size=Integer.parseInt(change);
-                studentTable.firstPage();
-                studentTable.setStudentOnPage(size);
-                studentTable.updateComponent();
-            }
-        });
-        toolBar.add(sizeBox);
 
         return toolBar;
 
@@ -317,15 +253,6 @@ public class MainWindow {
         return menuBar;
     }
 
-
-    public JScrollPane getScrollPanel(){
-        return scrollPanel;
-    }
-
-
-    public JFrame getFrame() {
-        return frame;
-    }
 
     public static void main(String[] args){
         new MainWindow();
