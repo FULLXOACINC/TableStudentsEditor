@@ -17,12 +17,11 @@ public class StudentTable extends JComponent{
     private JScrollPane scrollTable;
     private int currentPage = 1;
     private int studentOnPage = 10;
-    private int heightTable;
+
 
     public StudentTable(){
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         tableModel = new TableModel();
-        heightTable = 250;
         makePanel();
     }
 
@@ -153,29 +152,8 @@ public class StudentTable extends JComponent{
         return (int)((tableModel.getStudents().size() - 1)/ studentOnPage) + 1;
     }
 
-
     public TableModel getTableModel() {
         return tableModel;
-    }
-
-    public void setTableModel(TableModel tableModel) {
-        this.tableModel = tableModel;
-    }
-
-    public int getHeightTable() {
-        return heightTable;
-    }
-
-    public void setHeightTable(int heightTable) {
-        this.heightTable = heightTable;
-    }
-
-    public JScrollPane getScrollTable() {
-        return scrollTable;
-    }
-
-    public void setScrollTable(JScrollPane scrollTable) {
-        this.scrollTable = scrollTable;
     }
 
     public void updateComponent(){

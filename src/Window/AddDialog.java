@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 import java.util.List;
-import java.util.regex.Pattern;
+
 
 /**
  * Created by alex on 15.3.17.
@@ -70,7 +70,7 @@ public class AddDialog {
 
         private void createNewStudent() {
             if (isAllCorrect()){
-                java.util.List<String> socialwork = new ArrayList<String>();
+                List<String> socialwork = new ArrayList<String>();
                 for (int index=1;index<=tableModel.SEMESTER_NUMBER;index++) {
                     if(getTextID(index+SEMESTR).equals(""))
                         socialwork.add("-");

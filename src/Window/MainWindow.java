@@ -28,30 +28,30 @@ public class MainWindow {
     private JToolBar createMenuPanel() {
         JToolBar toolBar = new JToolBar();
 
-        toolBar.add(makeButton(new JButton(), "save.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "save.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("save");
             }
         }));
-        toolBar.add(makeButton(new JButton(), "open.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "open.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.out.println("open");
             }
         }));
         toolBar.addSeparator();
-        toolBar.add(makeButton(new JButton(), "add.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "add.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new AddDialog(studentTable);
 
             }
         }));
-        toolBar.add(makeButton(new JButton(), "delete.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
 //                studentTable.getTableModel().getStudents().remove(0);
 //                studentTable.updateComponent();
             }
         }));
-        toolBar.add(makeButton(new JButton(), "search.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new SearchDialog(studentTable);
 
@@ -60,15 +60,8 @@ public class MainWindow {
 
         return toolBar;
 
-
     }
 
-    private JButton makeButton(JButton button, String imgString, ActionListener action){
-        button.addActionListener(action);
-        ImageIcon img = new ImageIcon("img/"+imgString);
-        button.setIcon(img);
-        return button;
-    }
 
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
