@@ -16,7 +16,6 @@ public class StudentTable extends JComponent{
     private TableModel tableModel;
     private JScrollPane scrollTable;
     private int currentPage = 1;
-    private int pages=1;
     private int studentOnPage = 10;
     private int heightTable;
 
@@ -63,7 +62,7 @@ public class StudentTable extends JComponent{
                 AddComponent.add(table, write, i, y, 1, 1);
             }
         }
-        AddComponent.add(table, "Страница:"+currentPage+"/"+getPages()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
+        AddComponent.add(table, "Страница:"+currentPage+"/"+getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
         return table;
     }
 
@@ -180,7 +179,6 @@ public class StudentTable extends JComponent{
     }
 
     public void updateComponent(){
-        pages=(int)Math.ceil(tableModel.getStudents().size()/(double)studentOnPage);
         removeAll();
         makePanel();
         revalidate();
@@ -193,12 +191,8 @@ public class StudentTable extends JComponent{
         scrollTable.repaint();
     }
 
-
     public void setStudentOnPage(int studentOnPage) {
         this.studentOnPage = studentOnPage;
     }
 
-    public int getPages() {
-        return pages;
-    }
 }
