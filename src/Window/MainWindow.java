@@ -5,20 +5,21 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-
 /**
  * Created by alex on 15.3.17.
  */
 public class MainWindow {
-    private final StudentTable studentTable;
+    private final MainTable studentTable;
     private JFrame frame;
+    private FileWorker fileWorker;
 
     public MainWindow() {
 
-        frame = new JFrame("Student Table");
+        frame = new JFrame("Таблица общественных работ студентов");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(createMenuPanel(), BorderLayout.PAGE_START);
-        studentTable = new StudentTable();
+        studentTable = new MainTable();
+        fileWorker = new FileWorker(studentTable.getTableModel());
         frame.add(studentTable, BorderLayout.CENTER);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
@@ -28,32 +29,33 @@ public class MainWindow {
     private JToolBar createMenuPanel() {
         JToolBar toolBar = new JToolBar();
 
-        toolBar.add(AddComponent.makeButton(new JButton(), "save.png", new ActionListener() {
+        toolBar.add(AddComponenter.makeButton(new JButton(), "save.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("save");
+                fileWorker.saveFile();
             }
         }));
-        toolBar.add(AddComponent.makeButton(new JButton(), "open.png", new ActionListener() {
+        toolBar.add(AddComponenter.makeButton(new JButton(), "open.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                System.out.println("open");
+                fileWorker.openFile();
+                studentTable.updateComponent();
             }
         }));
         toolBar.addSeparator();
-        toolBar.add(AddComponent.makeButton(new JButton(), "add.png", new ActionListener() {
+        toolBar.add(AddComponenter.makeButton(new JButton(), "add.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new AddDialog(studentTable);
 
             }
         }));
-        toolBar.add(AddComponent.makeButton(new JButton(), "delete.png", new ActionListener() {
+        toolBar.add(AddComponenter.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                studentTable.getTableModel().getStudents().remove(0);
-//                studentTable.updateComponent();
+                new DeleteDialog(studentTable);
+
             }
         }));
-        toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
+        toolBar.add(AddComponenter.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SearchDialog(studentTable);
+                new SearchDialog(studentTable.getTableModel());
 
             }
         }));
@@ -247,7 +249,7 @@ public class MainWindow {
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new MainWindow();
     }
 

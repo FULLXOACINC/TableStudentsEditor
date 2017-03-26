@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by alex on 15.3.17.
  */
-public class StudentTable extends JComponent{
+public class MainTable extends JComponent{
 
     private TableModel tableModel;
     private JScrollPane scrollTable;
@@ -19,7 +19,7 @@ public class StudentTable extends JComponent{
     private int studentOnPage = 10;
 
 
-    public StudentTable(){
+    public MainTable(){
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         tableModel = new TableModel();
         makePanel();
@@ -44,11 +44,11 @@ public class StudentTable extends JComponent{
         table.setLayout(new GridBagLayout());
         List<Student> students = tableModel.getStudents();
         int countStudent=0;
-        AddComponent.add(table, "ФИО", 0, 0, 1, 3);
-        AddComponent.add(table, "Группа", 1, 0, 1, 3);
-        AddComponent.add(table, "Общественная работа", 2, 0, tableModel.SEMESTER_NUMBER * 2, 1);
+        AddComponenter.add(table, "ФИО", 0, 0, 1, 3);
+        AddComponenter.add(table, "Группа", 1, 0, 1, 3);
+        AddComponenter.add(table, "Общественная работа", 2, 0, tableModel.SEMESTER_NUMBER * 2, 1);
         for (int i = 0, x = 2; i < tableModel.SEMESTER_NUMBER; i++, x++) {
-            AddComponent.add(table, (i+1)+" сем.", x, 2, 1, 1);
+            AddComponenter.add(table, (i+1)+" сем.", x, 2, 1, 1);
         }
         int firstStudentOnPage = studentOnPage * (currentPage - 1);
         int lineInHeaderTable = 3;
@@ -58,33 +58,33 @@ public class StudentTable extends JComponent{
             countStudent++;
             for (int i = 0; i < tableModel.SEMESTER_NUMBER+2 ; i++) {
                 String write = getFieldForStudent(students.get(student), i);
-                AddComponent.add(table, write, i, y, 1, 1);
+                AddComponenter.add(table, write, i, y, 1, 1);
             }
         }
-        AddComponent.add(table, "Страница:"+currentPage+"/"+getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
+        AddComponenter.add(table, "Страница:"+currentPage+"/"+getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
         return table;
     }
 
     private JToolBar makeToolsPanel() {
 
         JToolBar panel = new JToolBar();
-        panel.add(AddComponent.makeButton(new JButton(), "first.png", new ActionListener() {
+        panel.add(AddComponenter.makeButton(new JButton(), "first.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 firstPage();
             }
         }));
 
-        panel.add(AddComponent.makeButton(new JButton(), "last.png", new ActionListener() {
+        panel.add(AddComponenter.makeButton(new JButton(), "last.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 lastPage();
             }
         }));
-        panel.add(AddComponent.makeButton(new JButton(), "prev.png", new ActionListener() {
+        panel.add(AddComponenter.makeButton(new JButton(), "prev.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 prevPage();
             }
         }));
-        panel.add(AddComponent.makeButton(new JButton(), "next.png", new ActionListener() {
+        panel.add(AddComponenter.makeButton(new JButton(), "next.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nextPage();
             }

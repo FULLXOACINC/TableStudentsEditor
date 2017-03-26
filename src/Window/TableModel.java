@@ -15,8 +15,8 @@ public class TableModel {
         List<String> socialWork=new ArrayList<String>();
         for(int i=0;i<10;i++)
             socialWork.add(i+"");
-        for(int i=0;i<150;i++)
-            students.add(new Student((i+1)+"","s","a","eee",socialWork));
+        for(int i=0;i<2;i++)
+            students.add(new Student("s","s","a","eee",socialWork));
     }
 
     public List<Student> getStudents() {

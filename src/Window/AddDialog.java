@@ -16,20 +16,20 @@ public class AddDialog {
 
         private static final String LAST_NAME = "Фамилия";
         private static final String FIRST_NAME = "Имя";
-        private static final String MIDDLE_NAME = "Отчество";
+        private static final String FATHER_NAME = "Отчество";
         private static final String GROUP = "Группа";
         private static final String SEMESTR = " сем.";
-        private StudentTable studentTable;
+        private MainTable mainTable;
         private TableModel tableModel;
-        private Map<String, JTextField> fieldID = new HashMap<String, JTextField>();
+        private Map<String, JTextField> field = new HashMap<String, JTextField>();
 
 
-        public AddDialog(StudentTable studentTable) {
-            this.studentTable = studentTable;
-            tableModel = studentTable.getTableModel();
+        public AddDialog(MainTable mainTable) {
+            this.mainTable = mainTable;
+            tableModel = mainTable.getTableModel();
             JFrame frame = createFrame();
             frame.pack();
-            frame.setLocationRelativeTo(studentTable);
+            frame.setLocationRelativeTo(null);
             frame.setResizable(false);
             frame.setVisible(true);
         }
@@ -38,27 +38,26 @@ public class AddDialog {
             JFrame frame = new JFrame("Добавить студента");
             JPanel jPanelID = new JPanel();
             jPanelID.setLayout(new GridBagLayout());
-            JLabel labelText = new JLabel("Добавить нового студента");
-            labelText.setHorizontalAlignment(JLabel.CENTER);
-            AddComponent.add(jPanelID,labelText, 0, 0, 2, 1);
-            String[] labelString = {LAST_NAME, FIRST_NAME, MIDDLE_NAME, GROUP};
+            JLabel labelText = new JLabel();
+            AddComponenter.add(jPanelID,labelText, 0, 0, 2, 1);
+            String[] labelString = {LAST_NAME, FIRST_NAME, FATHER_NAME, GROUP};
             for (int field = 0; field < labelString.length; field++) {
                 labelText = new JLabel(labelString[field]);
-                AddComponent.add(jPanelID, labelText, 0, field + 1, 1, 1);
+                AddComponenter.add(jPanelID, labelText, 0, field + 1, 1, 1);
                 JTextField jtfField = new JTextField(30);
-                fieldID.put(labelString[field],jtfField);
-                AddComponent.add(jPanelID, jtfField, 1, field + 1, 1, 1);
+                this.field.put(labelString[field],jtfField);
+                AddComponenter.add(jPanelID, jtfField, 1, field + 1, 1, 1);
             }
             for (int semestr=0; semestr < tableModel.SEMESTER_NUMBER;semestr++){
                 labelText = new JLabel((semestr+1)+SEMESTR);
-                AddComponent.add(jPanelID, labelText, 0, labelString.length+semestr + 2, 1, 1);
+                AddComponenter.add(jPanelID, labelText, 0, labelString.length+semestr + 2, 1, 1);
                 JTextField jtfField = new JTextField(30);
-                fieldID.put((semestr+1)+SEMESTR,jtfField);
-                AddComponent.add(jPanelID, jtfField, 1, labelString.length+semestr + 2, 1, 1);
+                field.put((semestr+1)+SEMESTR,jtfField);
+                AddComponenter.add(jPanelID, jtfField, 1, labelString.length+semestr + 2, 1, 1);
             }
             frame.add(jPanelID, BorderLayout.NORTH);
             frame.add(jPanelID, BorderLayout.NORTH);
-            JButton okButton = new JButton("OK");
+            JButton okButton = new JButton("Добавить");
             okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     createNewStudent();
@@ -79,10 +78,10 @@ public class AddDialog {
                 }
                 tableModel.getStudents().add(new Student(getTextID(LAST_NAME),
                         getTextID(FIRST_NAME),
-                        getTextID(MIDDLE_NAME),
+                        getTextID(FATHER_NAME),
                         getTextID(GROUP),
                         socialwork));
-                studentTable.updateComponent();
+                mainTable.updateComponent();
 
             } else {
                 JOptionPane.showMessageDialog
@@ -92,16 +91,16 @@ public class AddDialog {
 
 
     private boolean isAllCorrect() {
-        return !(isNotCorrectID(LAST_NAME) && isNotCorrectID(FIRST_NAME) && isNotCorrectID(MIDDLE_NAME));
+        return !(isNotCorrectID(LAST_NAME) && isNotCorrectID(FIRST_NAME) && isNotCorrectID(FATHER_NAME));
     }
 
     private String getTextID(String key) {
-        return fieldID.get(key).getText();
+        return field.get(key).getText();
     }
 
     private boolean isNotCorrectID(String key) {
-        return ((fieldID.get(key).getText().equals("")) ||
-                (fieldID.get(key).getText().length() > 0 && fieldID.get(key).getText().charAt(0) == ' '));
+        return ((field.get(key).getText().equals("")) ||
+                (field.get(key).getText().length() > 0 && field.get(key).getText().charAt(0) == ' '));
     }
 
 
