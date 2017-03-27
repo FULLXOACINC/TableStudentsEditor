@@ -27,6 +27,7 @@ public class SearchDialog {
     public SearchDialog(TableModel tableModel) {
         this.tableModel = tableModel;
         frame = createFrame();
+        frame.setJMenuBar(createMenuBar());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -77,6 +78,86 @@ public class SearchDialog {
         return frame;
     }
 
+    private JMenuBar createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        Font font = new Font("Verdana", Font.ITALIC, 12);
+
+        JMenu table = new JMenu("Table");
+        table.setFont(font);
+
+        JMenuItem firstPage = new JMenuItem("First page");
+        firstPage.setFont(font);
+        table.add(firstPage);
+        firstPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.firstPage();
+            }
+        });
+
+        JMenuItem lastPage = new JMenuItem("Last page");
+        lastPage.setFont(font);
+        table.add(lastPage);
+        lastPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.lastPage();
+            }
+        });
+        JMenuItem nextPage = new JMenuItem("Next page");
+        nextPage.setFont(font);
+        table.add(nextPage);
+        nextPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.nextPage();
+            }
+        });
+
+        JMenuItem prevPage = new JMenuItem("Prev page");
+        prevPage.setFont(font);
+        table.add(prevPage);
+        prevPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.prevPage();
+            }
+        });
+
+        JMenu size = new JMenu("Student on page");
+        size.setFont(font);
+        table.add(size);
+
+        JMenuItem fiveSize = new JMenuItem("5");
+        fiveSize.setFont(font);
+        size.add(fiveSize);
+        fiveSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.setStudentOnPage(5);
+                searchStudentTable.updateComponent();
+            }
+        });
+
+        JMenuItem tenSize = new JMenuItem("10");
+        tenSize.setFont(font);
+        size.add(tenSize);
+        tenSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.setStudentOnPage(10);
+                searchStudentTable.updateComponent();
+            }
+        });
+
+        JMenuItem fiftySize = new JMenuItem("50");
+        fiftySize.setFont(font);
+        size.add(fiftySize);
+        fiftySize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                searchStudentTable.setStudentOnPage(50);
+                searchStudentTable.updateComponent();
+            }
+        });
+
+        menuBar.add(table);
+        return menuBar;
+    }
+
     private void searchStudent(){
         if (isAllCorrect()){
             if (searchStudentTable != null)
@@ -98,7 +179,6 @@ public class SearchDialog {
                     (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);
         }
     }
-
 
     private boolean compliesTemplate(Student student) {
         if (!lastName.getText().equals("") && !lastName.getText().equals(student.getLastName())) return false;
@@ -137,7 +217,6 @@ public class SearchDialog {
         return false;
     }
 
-
     private boolean isAllCorrect() {
         return !(isNotCorrectLastName() && isNotCorrectSocialWork());
     }
@@ -145,6 +224,7 @@ public class SearchDialog {
     private boolean isNotCorrectLastName() {
         return (lastName.getText().length() > 0 && lastName.getText().charAt(0) == ' ');
     }
+
     private boolean isNotCorrectSocialWork() {
         return (socialWork.getText().length() > 0 && socialWork.getText().charAt(0) == ' ');
     }
