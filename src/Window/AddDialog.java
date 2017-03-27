@@ -82,7 +82,6 @@ public class AddDialog {
                         getTextID(GROUP),
                         socialwork));
                 mainTable.updateComponent();
-
             } else {
                 JOptionPane.showMessageDialog
                         (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);

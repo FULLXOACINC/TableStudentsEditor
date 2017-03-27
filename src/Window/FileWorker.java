@@ -1,13 +1,21 @@
 package Window;
 
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.xml.stream.XMLInputFactory;
-import javax.xml.stream.XMLOutputFactory;
-import javax.xml.stream.XMLStreamReader;
-import javax.xml.stream.XMLStreamWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import javax.xml.parsers.*;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +31,6 @@ public class FileWorker {
     private static final String SOCAIL_WORK = "social_work";
     private static final String STUDENT = "student";
     private static final String STUDENTS = "students";
-    private static final String FORMAT = "UTF-8";
-    private static final String VER = "1.0";
     private static final String EXTENSION = "xml";
 
     private TableModel tableModel;
@@ -34,130 +40,120 @@ public class FileWorker {
     }
 
     public void openFile() {
-        JFileChooser fc = new JFileChooser();
-        fc.setFileFilter(new FileNameExtensionFilter("xml", EXTENSION));
-        if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            openXMLFile(fc.getSelectedFile().getPath());
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("xml", EXTENSION));
+
+        if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            try {
+                SAXParserFactory factory = SAXParserFactory.newInstance();
+                SAXParser saxParser = factory.newSAXParser();
+                tableModel.getStudents().clear();
+                DefaultHandler handler = new DefaultHandler() {
+                    private static final String LAST_NAME = "last_name";
+                    private static final String FIRST_NAME = "first_name";
+                    private static final String FATHER_NAME = "father_name";
+                    private static final String GROUP = "group";
+                    private static final String SOCAIL_WORK = "social_work";
+                    private static final String STUDENT = "student";
+                    private String lastName = "";
+                    private String firstName = "";
+                    private String fatherName = "";
+                    private String group = "";
+                    private List<String> socialWork = new ArrayList<String>();
+
+                    boolean isSocialWork = false;
+
+                    @Override
+                    public void startElement(String uri,
+                                             String localName, String qName, Attributes attributes)
+                            throws SAXException {
+                        if (qName.equalsIgnoreCase(STUDENT)) {
+                            lastName=attributes.getValue(LAST_NAME);
+                            firstName=attributes.getValue(FIRST_NAME);
+                            fatherName=attributes.getValue(FATHER_NAME);
+                            group=attributes.getValue(GROUP);
+                        } else if (qName.equalsIgnoreCase(SOCAIL_WORK)) {
+                            isSocialWork = true;
+                        }
+                    }
+
+                    @Override
+                    public void endElement(String uri,
+                                           String localName, String qName) throws SAXException {
+                        if(socialWork.size()==tableModel.SEMESTER_NUMBER){
+                            tableModel.getStudents().add(new Student(lastName, firstName, fatherName, group, new ArrayList<String>(socialWork) ));
+                            socialWork.clear();
+                        }
+                    }
+
+                    @Override
+                    public void characters(char ch[],
+                                           int start, int length) throws SAXException {
+                        if (isSocialWork) {
+                            socialWork.add(new String(ch, start, length));
+                            isSocialWork = false;
+                        }
+                    }
+
+                };
+                saxParser.parse(new File(fileChooser.getSelectedFile().getPath()), handler);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void saveFile() {
         try {
             JFileChooser fc = new JFileChooser();
-            System.out.println("fsfs");
             if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
-                XMLOutputFactory output = XMLOutputFactory.newInstance();
-                System.out.println("fsfs");
-                XMLStreamWriter writer = output.createXMLStreamWriter
-                        (new FileWriter(fc.getSelectedFile() + "." + EXTENSION));
-                writer.writeStartDocument(FORMAT, VER);
-                System.out.println("fsfs");
-                writer.writeStartElement(STUDENTS);
-//                writer.writeEndElement();
+                DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+
+                Document doc = docBuilder.newDocument();
+                Element rootElement = doc.createElement(STUDENTS);
+                doc.appendChild(rootElement);
+
                 for (Student student : tableModel.getStudents()) {
-                    System.out.println("fsfs");
-                    writer.writeStartElement(STUDENT);
-                    writer.writeAttribute(LAST_NAME, student.getLastName());
-                    writer.writeAttribute(FIRST_NAME, student.getFirstName());
-                    writer.writeAttribute(FATHER_NAME, student.getMiddleName());
-                    writer.writeAttribute(GROUP, student.getGroupNumber());
+                    Element studentEl = doc.createElement(STUDENT);
+                    rootElement.appendChild(studentEl);
+
+                    Attr attr = doc.createAttribute(FIRST_NAME);
+                    attr.setValue(student.getFirstName());
+                    studentEl.setAttributeNode(attr);
+
+                    attr = doc.createAttribute(LAST_NAME);
+                    attr.setValue(student.getLastName());
+                    studentEl.setAttributeNode(attr);
+
+                    attr = doc.createAttribute(FATHER_NAME);
+                    attr.setValue(student.getFatherName());
+                    studentEl.setAttributeNode(attr);
+
+                    attr = doc.createAttribute(GROUP);
+                    attr.setValue(student.getGroupNumber());
+                    studentEl.setAttributeNode(attr);
+
+
                     for (String socialWork : student.getSocialWork()) {
-                        System.out.println("ofo");
-                        writer.writeStartElement(SOCAIL_WORK);
-                        writer.writeCharacters(socialWork);
-                        writer.writeEndElement();
+                        Element firstname = doc.createElement(SOCAIL_WORK);
+                        firstname.appendChild(doc.createTextNode(socialWork));
+                        studentEl.appendChild(firstname);
                     }
-                    writer.writeEndElement();
+
+                    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+                    Transformer transformer = transformerFactory.newTransformer();
+                    DOMSource source = new DOMSource(doc);
+                    StreamResult result = new StreamResult(new File(fc.getSelectedFile() + "." + EXTENSION));
+                    transformer.transform(source, result);
+
                 }
-                System.out.println("ofdfo");
-                writer.writeEndElement();
-                writer.writeEndDocument();
-                writer.flush();
             }
-        } catch (Exception eSave) {
-            JOptionPane.showMessageDialog
-                    (null, "Can't save file", "ERROR", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
+        } catch (ParserConfigurationException pce) {
+            JOptionPane.showMessageDialog(null, "Не получилось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
+        } catch (TransformerException tfe) {
+            JOptionPane.showMessageDialog(null, "Не получилось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
         }
     }
 
-    public void openXMLFile(String fileName) {
-//        try {
-//            String name;
-//            String mark;
-//            String lastName = "";
-//            String firstName = "";
-//            String middleName = "";
-//            String group = "";
-//            String numberExam = "";
-//            tableModel.getStudents().clear();
-//            List<String> socialWork = new ArrayList<String>();
-//            XMLStreamReader xmlr = XMLInputFactory.newInstance()
-//                    .createXMLStreamReader(fileName, new FileInputStream(fileName));
-//            System.out.println("ds");
-//            while (xmlr.hasNext()) {
-//                System.out.println("ds");
-//                xmlr.next();
-//                if (xmlr.isStartElement()) {
-//                    if (xmlr.getLocalName().equals(STUDENT)) {
-//                        socialWork = new ArrayList<String>();
-//                        lastName = xmlr.getAttributeValue(null, LAST_NAME);
-//                        firstName = xmlr.getAttributeValue(null, FIRST_NAME);
-//                        middleName = xmlr.getAttributeValue(null, FATHER_NAME);
-//                        group = xmlr.getAttributeValue(null, GROUP);
-//                        System.out.println("ds");
-//                        xmlr.next();
-//                    } else if (xmlr.getLocalName().equals(SOCAIL_WORK)) {
-//                        System.out.println("ds1");
-//                        socialWork.add(xmlr.getAttributeValue(null, SOCAIL_WORK));
-//                    } else if (xmlr.isEndElement()) {
-//                        System.out.println("ds2");
-//                        if (xmlr.getLocalName().equals(STUDENT)) {
-//                            tableModel.getStudents().add(new Student(lastName, firstName, middleName, group, socialWork));
-//                        }
-//                    }
-//                }
-//            }
-//        } catch (Exception e) {
-//            System.out.println(e);
-//            JOptionPane.showMessageDialog
-//                    (null, "Can't open file", "ERROR", JOptionPane.ERROR_MESSAGE);
-//        }
-        try {
-            String name;
-            String mark;
-            String lastName = "";
-            String firstName = "";
-            String middleName = "";
-            String group = "";
-            String numberExam = "";
-            tableModel.getStudents().clear();
-            List<String> socialWork = new ArrayList<String>();
-            XMLStreamReader xmlr = XMLInputFactory.newInstance()
-                    .createXMLStreamReader(fileName, new FileInputStream(fileName));
-            while (xmlr.hasNext()) {
-                xmlr.next();
-                if (xmlr.isStartElement()) {
-                    if (xmlr.getLocalName().equals(STUDENT)){
-                        socialWork = new ArrayList<String>();
-                        lastName = xmlr.getAttributeValue(null, LAST_NAME);
-                        firstName = xmlr.getAttributeValue(null, FIRST_NAME);
-                        middleName = xmlr.getAttributeValue(null, FATHER_NAME);
-                        group = xmlr.getAttributeValue(null, GROUP);
-                    }
-                    else
-                        if (xmlr.getLocalName().equals(SOCAIL_WORK)){
-                        xmlr.next();
-                        socialWork.add(xmlr.getText());
-                    }
-                } else if (xmlr.isEndElement()) {
-                    if (xmlr.getLocalName().equals(STUDENT)){
-                        tableModel.getStudents().add(new Student(lastName, firstName, middleName, group, socialWork));
-                    }
-                }
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog
-                    (null, "Can't open file", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-    }
 }

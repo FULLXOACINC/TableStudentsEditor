@@ -9,7 +9,7 @@ import java.awt.event.*;
  * Created by alex on 15.3.17.
  */
 public class MainWindow {
-    private final MainTable studentTable;
+    private final MainTable mainTable;
     private JFrame frame;
     private FileWorker fileWorker;
 
@@ -18,9 +18,10 @@ public class MainWindow {
         frame = new JFrame("Таблица общественных работ студентов");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(createMenuPanel(), BorderLayout.PAGE_START);
-        studentTable = new MainTable();
-        fileWorker = new FileWorker(studentTable.getTableModel());
-        frame.add(studentTable, BorderLayout.CENTER);
+        mainTable = new MainTable();
+        fileWorker = new FileWorker(mainTable.getTableModel());
+        frame.add(mainTable, BorderLayout.CENTER);
+        frame.setJMenuBar(createMenuBar());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
 
@@ -37,25 +38,25 @@ public class MainWindow {
         toolBar.add(AddComponenter.makeButton(new JButton(), "open.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fileWorker.openFile();
-                studentTable.updateComponent();
+                mainTable.updateComponent();
             }
         }));
         toolBar.addSeparator();
         toolBar.add(AddComponenter.makeButton(new JButton(), "add.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new AddDialog(studentTable);
+                new AddDialog(mainTable);
 
             }
         }));
         toolBar.add(AddComponenter.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DeleteDialog(studentTable);
+                new DeleteDialog(mainTable);
 
             }
         }));
         toolBar.add(AddComponenter.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SearchDialog(studentTable.getTableModel());
+                new SearchDialog(mainTable.getTableModel());
 
             }
         }));
@@ -67,184 +68,118 @@ public class MainWindow {
 
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-//        JMenu fileMenu = new JMenu("File");
-//        Font font = new Font("Verdana", Font.ITALIC, 12);
-//        fileMenu.setFont(font);
-//
-//        JMenuItem newMenu = new JMenuItem("New");
-//        newMenu.setFont(font);
-//        fileMenu.add(newMenu);
-//        newMenu.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//
-//                int answer = JOptionPane.showConfirmDialog(
-//                        frame,
-//                        "Del all?",
-//                        "New",
-//                        JOptionPane.YES_NO_OPTION);
-//                if(answer==0)
-//                    fileWork.newFile();
-//                updateWindow();
-//
-//            }
-//        });
-//
-//        JMenuItem openItem = new JMenuItem("Open");
-//        openItem.setFont(font);
-//        fileMenu.add(openItem);
-//        openItem.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                fileWork.openFile();
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenuItem saveItem = new JMenuItem("Save");
-//        saveItem.setFont(font);
-//        fileMenu.add(saveItem);
-//        saveItem.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                fileWork.saveFile();
-//                updateWindow();
-//            }
-//        });
-//
-//        fileMenu.addSeparator();
-//
-//        JMenuItem exitItem = new JMenuItem("Exit");
-//        exitItem.setFont(font);
-//        fileMenu.add(exitItem);
-//
-//        exitItem.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                int answer = JOptionPane.showOptionDialog(frame,
-//                        "Would you like to save this document?",
-//                        "Save",
-//                        JOptionPane.YES_NO_CANCEL_OPTION,
-//                        JOptionPane.QUESTION_MESSAGE, null, null, null);
-//                if(answer==2)
-//                    return;
-//                if(answer==0){
-//                    fileWork.saveFile();
-//                }
-//                System.exit(0);
-//
-//            }
-//        });
-//
-//        menuBar.add(fileMenu);
-//
-//        JMenu edit = new JMenu("Edit");
-//        edit.setFont(font);
-//
-//        JMenuItem copy = new JMenuItem("Copy");
-//        copy.setFont(font);
-//        edit.add(copy);
-//        copy.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().copy();
-//                updateWindow();
-//
-//            }
-//        });
-//
-//        JMenuItem paste = new JMenuItem("Paste");
-//        paste.setFont(font);
-//        edit.add(paste);
-//        paste.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().paste();
-//                updateWindow();
-//
-//            }
-//        });
-//
-//        JMenuItem cut = new JMenuItem("Cut");
-//        cut.setFont(font);
-//        edit.add(cut);
-//        cut.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().cut();
-//                updateWindow();
-//
-//            }
-//        });
-//
-//        menuBar.add(edit);
-//
-//        JMenu formatter = new JMenu("Format");
-//        formatter.setFont(font);
-//
-//        JMenuItem bold = new JMenuItem("Bold");
-//        bold.setFont(font);
-//        formatter.add(bold);
-//        bold.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeStyleOnBold();
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenuItem italic = new JMenuItem("Italic");
-//        italic.setFont(font);
-//        formatter.add(italic);
-//        italic.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeStyleOnItalic();
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenu size = new JMenu("Size");
-//        size.setFont(font);
-//        formatter.add(size);
-//
-//        JMenuItem tenSize = new JMenuItem("10");
-//        tenSize.setFont(font);
-//        size.add(tenSize);
-//        tenSize.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeSizeFont(10);
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenuItem fiftySize = new JMenuItem("50");
-//        fiftySize.setFont(font);
-//        size.add(fiftySize);
-//        fiftySize.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeSizeFont(50);
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenu textFont = new JMenu("Font");
-//        textFont.setFont(font);
-//        formatter.add(textFont);
-//
-//        JMenuItem liberSerif = new JMenuItem("Liberation Serif");
-//        liberSerif.setFont(font);
-//        textFont.add(liberSerif);
-//        liberSerif.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeTypeFont("Liberation Serif");
-//                updateWindow();
-//            }
-//        });
-//
-//        JMenuItem monospaned = new JMenuItem("Monospaned");
-//        monospaned.setFont(font);
-//        textFont.add(monospaned);
-//        monospaned.addActionListener(new ActionListener() {
-//            public void actionPerformed(ActionEvent e) {
-//                textPanel.getTextPanelModel().changeTypeFont("Monospaned");
-//                updateWindow();
-//            }
-//        });
-//
-//        menuBar.add(formatter);
+        JMenu fileMenu = new JMenu("File");
+        Font font = new Font("Verdana", Font.ITALIC, 12);
+        fileMenu.setFont(font);
 
+
+        JMenuItem openItem = new JMenuItem("Open");
+        openItem.setFont(font);
+        fileMenu.add(openItem);
+        openItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fileWorker.openFile();
+                mainTable.updateComponent();
+            }
+        });
+
+        JMenuItem saveItem = new JMenuItem("Save");
+        saveItem.setFont(font);
+        fileMenu.add(saveItem);
+        saveItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                fileWorker.saveFile();
+            }
+        });
+
+        fileMenu.addSeparator();
+
+        JMenuItem exitItem = new JMenuItem("Exit");
+        exitItem.setFont(font);
+        fileMenu.add(exitItem);
+
+        exitItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
+
+        menuBar.add(fileMenu);
+
+
+        JMenu table = new JMenu("Table");
+        table.setFont(font);
+
+        JMenuItem firstPage = new JMenuItem("First page");
+        firstPage.setFont(font);
+        table.add(firstPage);
+        firstPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.firstPage();
+            }
+        });
+
+        JMenuItem lastPage = new JMenuItem("Last page");
+        lastPage.setFont(font);
+        table.add(lastPage);
+        lastPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.lastPage();
+            }
+        });
+        JMenuItem nextPage = new JMenuItem("Next page");
+        nextPage.setFont(font);
+        table.add(nextPage);
+        nextPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.nextPage();
+            }
+        });
+
+        JMenuItem prevPage = new JMenuItem("Prev page");
+        prevPage.setFont(font);
+        table.add(prevPage);
+        prevPage.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.prevPage();
+            }
+        });
+
+        JMenu size = new JMenu("Student on page");
+        size.setFont(font);
+        table.add(size);
+
+        JMenuItem fiveSize = new JMenuItem("5");
+        fiveSize.setFont(font);
+        size.add(fiveSize);
+        fiveSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.setStudentOnPage(5);
+                mainTable.updateComponent();
+            }
+        });
+
+        JMenuItem tenSize = new JMenuItem("10");
+        tenSize.setFont(font);
+        size.add(tenSize);
+        tenSize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.setStudentOnPage(10);
+                mainTable.updateComponent();
+            }
+        });
+
+        JMenuItem fiftySize = new JMenuItem("50");
+        fiftySize.setFont(font);
+        size.add(fiftySize);
+        fiftySize.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainTable.setStudentOnPage(50);
+                mainTable.updateComponent();
+            }
+        });
+
+        menuBar.add(table);
         return menuBar;
     }
 

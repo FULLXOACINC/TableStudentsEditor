@@ -9,7 +9,7 @@ public class Student {
 
     private String lastName;
     private String firstName;
-    private String middleName;
+    private String fatherName;
     private String groupNumber;
     private List<String> socialWork;
 
@@ -17,7 +17,7 @@ public class Student {
                    String groupNumber, List<String> socialWork) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.middleName = middleName;
+        this.fatherName = middleName;
         this.groupNumber = groupNumber;
         this.socialWork = socialWork;
 
@@ -30,8 +30,8 @@ public class Student {
         return firstName;
     }
 
-    public String getMiddleName() {
-        return middleName;
+    public String getFatherName() {
+        return fatherName;
     }
 
     public String getGroupNumber() {

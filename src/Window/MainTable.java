@@ -89,7 +89,7 @@ public class MainTable extends JComponent{
                 nextPage();
             }
         }));
-        String[] size = {"10", "20", "30", "40", "50"};
+        String[] size = {"5","10","50"};
         JComboBox sizeBox = new JComboBox(size);
         sizeBox.setSelectedIndex(Arrays.asList(size).indexOf(Integer.toString(studentOnPage)));
         sizeBox.setMaximumSize(new Dimension(70,100));
@@ -109,7 +109,7 @@ public class MainTable extends JComponent{
     }
 
     public String getFieldForStudent(Student student, int i) {
-        if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getMiddleName();
+        if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getFatherName();
         else if (i == 1) return student.getGroupNumber();
         else {
             return student.getSocialWork().get(i-2);
