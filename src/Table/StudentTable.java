@@ -1,5 +1,6 @@
 package Table;
 
+import Table.Model.Student;
 import Table.Model.TableModel;
 
 import javax.swing.*;
@@ -17,9 +18,6 @@ public class StudentTable extends JComponent{
 
     private TableModel tableModel;
     private JScrollPane scrollTable;
-    private int currentPage = 1;
-    private int studentOnPage = 5;
-
 
     public StudentTable(){
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -44,7 +42,7 @@ public class StudentTable extends JComponent{
     private JPanel makeTable(){
         JPanel table = new JPanel();
         table.setLayout(new GridBagLayout());
-        List<Window.Student> students = tableModel.getStudents();
+        List<Student> students = tableModel.getStudents();
         int countStudent=0;
         AddComponent.add(table, "ФИО", 0, 0, 1, 3);
         AddComponent.add(table, "Группа", 1, 0, 1, 3);
@@ -52,10 +50,10 @@ public class StudentTable extends JComponent{
         for (int i = 0, x = 2; i < tableModel.SEMESTER_NUMBER; i++, x++) {
             AddComponent.add(table, (i+1)+" сем.", x, 2, 1, 1);
         }
-        int firstStudentOnPage = studentOnPage * (currentPage - 1);
+        int firstStudentOnPage = tableModel.getStudentOnPage() * (tableModel.getCurrentPage()- 1);
         int lineInHeaderTable = 3;
         for (int y = lineInHeaderTable, student = firstStudentOnPage;
-             y < studentOnPage + lineInHeaderTable && student < students.size();
+             y < tableModel.getStudentOnPage() + lineInHeaderTable && student < students.size();
              y++, student++) {
             countStudent++;
             for (int i = 0; i < tableModel.SEMESTER_NUMBER+2 ; i++) {
@@ -63,7 +61,7 @@ public class StudentTable extends JComponent{
                 AddComponent.add(table, write, i, y, 1, 1);
             }
         }
-        AddComponent.add(table, "Страница:"+currentPage+"/"+getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, studentOnPage + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
+        AddComponent.add(table, "Страница:"+tableModel.getCurrentPage()+"/"+tableModel.getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, tableModel.getStudentOnPage() + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
         return table;
     }
 
@@ -72,36 +70,41 @@ public class StudentTable extends JComponent{
         JToolBar panel = new JToolBar();
         panel.add(AddComponent.makeButton(new JButton(), "first.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                firstPage();
+                tableModel.firstPage();
+                updateComponent();
             }
         }));
 
         panel.add(AddComponent.makeButton(new JButton(), "last.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                lastPage();
+                tableModel.lastPage();
+                updateComponent();
             }
         }));
         panel.add(AddComponent.makeButton(new JButton(), "prev.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                prevPage();
+                tableModel.prevPage();
+                updateComponent();
             }
         }));
         panel.add(AddComponent.makeButton(new JButton(), "next.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                nextPage();
+                tableModel.nextPage();
+                updateComponent();
+
             }
         }));
         String[] size = {"5","10","50"};
         JComboBox sizeBox = new JComboBox(size);
-        sizeBox.setSelectedIndex(Arrays.asList(size).indexOf(Integer.toString(studentOnPage)));
+        sizeBox.setSelectedIndex(Arrays.asList(size).indexOf(Integer.toString(tableModel.getStudentOnPage())));
         sizeBox.setMaximumSize(new Dimension(70,100));
         sizeBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JComboBox cb = (JComboBox)e.getSource();
                 String change = (String) cb.getSelectedItem();
                 int size=Integer.parseInt(change);
-                firstPage();
-                setStudentOnPage(size);
+                tableModel.firstPage();
+                tableModel.setStudentOnPage(size);
                 updateComponent();
             }
         });
@@ -110,48 +113,12 @@ public class StudentTable extends JComponent{
         return panel;
     }
 
-    public String getFieldForStudent(Window.Student student, int i) {
+    public String getFieldForStudent(Student student, int i) {
         if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getFatherName();
         else if (i == 1) return student.getGroupNumber();
         else {
             return student.getSocialWork().get(i-2);
         }
-    }
-
-    public void nextPage(){
-        if (hasNextPage()) {
-            currentPage++;
-            updateComponent();
-        }
-    }
-
-    private boolean hasNextPage() {
-        return tableModel.getStudents().size() > studentOnPage * (currentPage - 1) + studentOnPage;
-    }
-
-    public void prevPage(){
-        if (currentPage > 1) {
-            currentPage--;
-            updateComponent();
-        }
-    }
-
-    public void firstPage(){
-        if (currentPage > 1) {
-            currentPage = 1;
-            updateComponent();
-        }
-    }
-
-    public void lastPage(){
-        if (currentPage != getNumberMaxPage()){
-            currentPage = getNumberMaxPage();
-            updateComponent();
-        }
-    }
-
-    private int getNumberMaxPage() {
-        return (int)((tableModel.getStudents().size() - 1)/ studentOnPage) + 1;
     }
 
     public TableModel getTableModel() {
@@ -169,10 +136,6 @@ public class StudentTable extends JComponent{
 
         scrollTable.revalidate();
         scrollTable.repaint();
-    }
-
-    public void setStudentOnPage(int studentOnPage) {
-        this.studentOnPage = studentOnPage;
     }
 
 }

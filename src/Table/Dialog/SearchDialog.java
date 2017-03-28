@@ -1,6 +1,9 @@
 package Table.Dialog;
 
+import Table.AddComponent;
+import Table.Model.Student;
 import Table.Model.TableModel;
+import Table.StudentTable;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +26,7 @@ public class SearchDialog {
     private final String SOCIAL_WORK = "Общественная работа:";
     private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private JFrame frame;
-    private Window.StudentTable searchStudentTable;
+    private StudentTable searchStudentTable;
     private JTextField socialWork;
 
     public SearchDialog(TableModel tableModel) {
@@ -42,32 +45,32 @@ public class SearchDialog {
         JPanel jPanelID = new JPanel();
         jPanelID.setLayout(new GridBagLayout());
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        Window.AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
+        AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
 
         String[] labelString = {LAST_NAME, GROUP,SOCIAL_WORK,CAUNT_OF_SOCIAL_WORK};
         labelText = new JLabel(labelString[0]);
-        Window.AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
+        AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
 
         lastName = new JTextField(30);
-        Window.AddComponent.add(jPanelID, lastName, 1, 1, 3, 1);
+        AddComponent.add(jPanelID, lastName, 1, 1, 3, 1);
         labelText = new JLabel(labelString[1]);
-        Window.AddComponent.add(jPanelID, labelText, 0, 2, 1, 1);
+        AddComponent.add(jPanelID, labelText, 0, 2, 1, 1);
 
         group = new JTextField(30);
-        Window.AddComponent.add(jPanelID, group, 1, 2, 3, 1);
+        AddComponent.add(jPanelID, group, 1, 2, 3, 1);
         labelText = new JLabel(labelString[2]);
-        Window.AddComponent.add(jPanelID, labelText, 0, 3, 1, 1);
+        AddComponent.add(jPanelID, labelText, 0, 3, 1, 1);
 
         socialWork = new JTextField(30);
-        Window.AddComponent.add(jPanelID, socialWork, 1, 3, 3, 1);
+        AddComponent.add(jPanelID, socialWork, 1, 3, 3, 1);
         String[] markString = {"-","1","2","3", "4", "5", "6", "7", "8", "9", "10"};
         labelText = new JLabel(labelString[3]);
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        Window.AddComponent.add(jPanelID,labelText, 0, 4, 1, 1);
+        AddComponent.add(jPanelID,labelText, 0, 4, 1, 1);
         minCount = new JComboBox(markString);
-        Window.AddComponent.add(jPanelID, minCount, 1, 4, 1, 1);
+        AddComponent.add(jPanelID, minCount, 1, 4, 1, 1);
         maxCount = new JComboBox(markString);
-        Window.AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
+        AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
 
         frame.add(jPanelID, BorderLayout.NORTH);
         JButton okButton = new JButton("Поиск");
@@ -92,7 +95,8 @@ public class SearchDialog {
         table.add(firstPage);
         firstPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.firstPage();
+                searchStudentTable.getTableModel().firstPage();
+                searchStudentTable.updateComponent();
             }
         });
 
@@ -101,7 +105,8 @@ public class SearchDialog {
         table.add(lastPage);
         lastPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.lastPage();
+                searchStudentTable.getTableModel().lastPage();
+                searchStudentTable.updateComponent();
             }
         });
         JMenuItem nextPage = new JMenuItem("Следующая страница");
@@ -109,7 +114,8 @@ public class SearchDialog {
         table.add(nextPage);
         nextPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.nextPage();
+                searchStudentTable.getTableModel().nextPage();
+                searchStudentTable.updateComponent();
             }
         });
 
@@ -118,7 +124,8 @@ public class SearchDialog {
         table.add(prevPage);
         prevPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.prevPage();
+                searchStudentTable.getTableModel().prevPage();
+                searchStudentTable.updateComponent();
             }
         });
 
@@ -131,7 +138,7 @@ public class SearchDialog {
         size.add(fiveSize);
         fiveSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.setStudentOnPage(5);
+                searchStudentTable.getTableModel().setStudentOnPage(5);
                 searchStudentTable.updateComponent();
             }
         });
@@ -141,7 +148,7 @@ public class SearchDialog {
         size.add(tenSize);
         tenSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.setStudentOnPage(10);
+                searchStudentTable.getTableModel().setStudentOnPage(10);
                 searchStudentTable.updateComponent();
             }
         });
@@ -151,7 +158,7 @@ public class SearchDialog {
         size.add(fiftySize);
         fiftySize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                searchStudentTable.setStudentOnPage(50);
+                searchStudentTable.getTableModel().setStudentOnPage(50);
                 searchStudentTable.updateComponent();
             }
         });
@@ -164,9 +171,9 @@ public class SearchDialog {
         if (isAllCorrect()){
             if (searchStudentTable != null)
                 frame.remove(searchStudentTable);
-            searchStudentTable = new Window.StudentTable();
+            searchStudentTable = new StudentTable();
             searchStudentTable.getTableModel().getStudents().clear();
-            for (Window.Student student: tableModel.getStudents()) {
+            for (Student student: tableModel.getStudents()) {
                 if (compliesTemplate(student)) {
                     searchStudentTable.getTableModel().getStudents().add(student);
                 }
@@ -182,7 +189,7 @@ public class SearchDialog {
         }
     }
 
-    private boolean compliesTemplate(Window.Student student) {
+    private boolean compliesTemplate(Student student) {
         if (!lastName.getText().equals(student.getLastName())) return false;
         if (!isTextEmpty(group.getText()) && !group.getText().equals(student.getGroupNumber())) return false;
         if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
