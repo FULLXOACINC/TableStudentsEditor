@@ -1,4 +1,4 @@
-package Window;
+package Table.Model;
 
 import java.util.List;
 

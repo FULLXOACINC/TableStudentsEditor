@@ -1,5 +1,10 @@
-package Window;
+package Table.Dialog;
 
+
+import Table.AddComponent;
+import Table.Model.Student;
+import Table.StudentTable;
+import Table.Model.TableModel;
 
 import javax.swing.*;
 import java.awt.*;

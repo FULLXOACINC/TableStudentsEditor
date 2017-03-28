@@ -1,4 +1,6 @@
-package Window;
+package Table;
+
+import Table.Model.TableModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +44,7 @@ public class StudentTable extends JComponent{
     private JPanel makeTable(){
         JPanel table = new JPanel();
         table.setLayout(new GridBagLayout());
-        List<Student> students = tableModel.getStudents();
+        List<Window.Student> students = tableModel.getStudents();
         int countStudent=0;
         AddComponent.add(table, "ФИО", 0, 0, 1, 3);
         AddComponent.add(table, "Группа", 1, 0, 1, 3);
@@ -108,7 +110,7 @@ public class StudentTable extends JComponent{
         return panel;
     }
 
-    public String getFieldForStudent(Student student, int i) {
+    public String getFieldForStudent(Window.Student student, int i) {
         if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getFatherName();
         else if (i == 1) return student.getGroupNumber();
         else {

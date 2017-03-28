@@ -1,4 +1,6 @@
-package Window;
+package Table.Dialog;
+
+import Table.Model.TableModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +23,7 @@ public class SearchDialog {
     private final String SOCIAL_WORK = "Общественная работа:";
     private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private JFrame frame;
-    private StudentTable searchStudentTable;
+    private Window.StudentTable searchStudentTable;
     private JTextField socialWork;
 
     public SearchDialog(TableModel tableModel) {
@@ -40,32 +42,32 @@ public class SearchDialog {
         JPanel jPanelID = new JPanel();
         jPanelID.setLayout(new GridBagLayout());
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
+        Window.AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
 
         String[] labelString = {LAST_NAME, GROUP,SOCIAL_WORK,CAUNT_OF_SOCIAL_WORK};
         labelText = new JLabel(labelString[0]);
-        AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
+        Window.AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
 
         lastName = new JTextField(30);
-        AddComponent.add(jPanelID, lastName, 1, 1, 3, 1);
+        Window.AddComponent.add(jPanelID, lastName, 1, 1, 3, 1);
         labelText = new JLabel(labelString[1]);
-        AddComponent.add(jPanelID, labelText, 0, 2, 1, 1);
+        Window.AddComponent.add(jPanelID, labelText, 0, 2, 1, 1);
 
         group = new JTextField(30);
-        AddComponent.add(jPanelID, group, 1, 2, 3, 1);
+        Window.AddComponent.add(jPanelID, group, 1, 2, 3, 1);
         labelText = new JLabel(labelString[2]);
-        AddComponent.add(jPanelID, labelText, 0, 3, 1, 1);
+        Window.AddComponent.add(jPanelID, labelText, 0, 3, 1, 1);
 
         socialWork = new JTextField(30);
-        AddComponent.add(jPanelID, socialWork, 1, 3, 3, 1);
+        Window.AddComponent.add(jPanelID, socialWork, 1, 3, 3, 1);
         String[] markString = {"-","1","2","3", "4", "5", "6", "7", "8", "9", "10"};
         labelText = new JLabel(labelString[3]);
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        AddComponent.add(jPanelID,labelText, 0, 4, 1, 1);
+        Window.AddComponent.add(jPanelID,labelText, 0, 4, 1, 1);
         minCount = new JComboBox(markString);
-        AddComponent.add(jPanelID, minCount, 1, 4, 1, 1);
+        Window.AddComponent.add(jPanelID, minCount, 1, 4, 1, 1);
         maxCount = new JComboBox(markString);
-        AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
+        Window.AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
 
         frame.add(jPanelID, BorderLayout.NORTH);
         JButton okButton = new JButton("Поиск");
@@ -162,9 +164,9 @@ public class SearchDialog {
         if (isAllCorrect()){
             if (searchStudentTable != null)
                 frame.remove(searchStudentTable);
-            searchStudentTable = new StudentTable();
+            searchStudentTable = new Window.StudentTable();
             searchStudentTable.getTableModel().getStudents().clear();
-            for (Student student: tableModel.getStudents()) {
+            for (Window.Student student: tableModel.getStudents()) {
                 if (compliesTemplate(student)) {
                     searchStudentTable.getTableModel().getStudents().add(student);
                 }
@@ -180,7 +182,7 @@ public class SearchDialog {
         }
     }
 
-    private boolean compliesTemplate(Student student) {
+    private boolean compliesTemplate(Window.Student student) {
         if (!lastName.getText().equals(student.getLastName())) return false;
         if (!isTextEmpty(group.getText()) && !group.getText().equals(student.getGroupNumber())) return false;
         if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;

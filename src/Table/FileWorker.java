@@ -1,5 +1,7 @@
-package Window;
+package Table;
 
+import Table.Model.Student;
+import Table.Model.TableModel;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;

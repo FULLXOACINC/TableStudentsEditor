@@ -1,5 +1,10 @@
 package Window;
 
+import Table.*;
+import Table.Dialog.AddDialog;
+import Table.Dialog.DeleteDialog;
+import Table.Dialog.SearchDialog;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

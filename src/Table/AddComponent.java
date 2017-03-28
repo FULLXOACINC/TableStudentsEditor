@@ -1,4 +1,4 @@
-package Window;
+package Table;
 
 import javax.swing.*;
 import java.awt.*;
