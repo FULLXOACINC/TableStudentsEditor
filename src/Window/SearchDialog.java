@@ -16,12 +16,12 @@ public class SearchDialog {
     private JTextField group;
     private JComboBox minCount;
     private JComboBox maxCount;
-    private static final String LAST_NAME = "Фамилия:";
-    private static final String GROUP = "Группа:";
-    private static final String SOCIAL_WORK = "Общественная работа";
-    private static final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы";
+    private final String LAST_NAME = "Фамилия:";
+    private final String GROUP = "Группа:";
+    private final String SOCIAL_WORK = "Общественная работа:";
+    private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private JFrame frame;
-    private MainTable searchStudentTable;
+    private StudentTable searchStudentTable;
     private JTextField socialWork;
 
     public SearchDialog(TableModel tableModel) {
@@ -40,32 +40,32 @@ public class SearchDialog {
         JPanel jPanelID = new JPanel();
         jPanelID.setLayout(new GridBagLayout());
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        AddComponenter.add(jPanelID,labelText, 0, 0, 3, 1);
+        AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
 
         String[] labelString = {LAST_NAME, GROUP,SOCIAL_WORK,CAUNT_OF_SOCIAL_WORK};
         labelText = new JLabel(labelString[0]);
-        AddComponenter.add(jPanelID,labelText, 0, 1, 1, 1);
+        AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
 
         lastName = new JTextField(30);
-        AddComponenter.add(jPanelID, lastName, 1, 1, 3, 1);
+        AddComponent.add(jPanelID, lastName, 1, 1, 3, 1);
         labelText = new JLabel(labelString[1]);
-        AddComponenter.add(jPanelID, labelText, 0, 2, 1, 1);
+        AddComponent.add(jPanelID, labelText, 0, 2, 1, 1);
 
         group = new JTextField(30);
-        AddComponenter.add(jPanelID, group, 1, 2, 3, 1);
+        AddComponent.add(jPanelID, group, 1, 2, 3, 1);
         labelText = new JLabel(labelString[2]);
-        AddComponenter.add(jPanelID, labelText, 0, 3, 1, 1);
+        AddComponent.add(jPanelID, labelText, 0, 3, 1, 1);
 
         socialWork = new JTextField(30);
-        AddComponenter.add(jPanelID, socialWork, 1, 3, 3, 1);
+        AddComponent.add(jPanelID, socialWork, 1, 3, 3, 1);
         String[] markString = {"-","1","2","3", "4", "5", "6", "7", "8", "9", "10"};
         labelText = new JLabel(labelString[3]);
         labelText.setHorizontalAlignment(JLabel.CENTER);
-        AddComponenter.add(jPanelID,labelText, 0, 4, 1, 1);
+        AddComponent.add(jPanelID,labelText, 0, 4, 1, 1);
         minCount = new JComboBox(markString);
-        AddComponenter.add(jPanelID, minCount, 1, 4, 1, 1);
+        AddComponent.add(jPanelID, minCount, 1, 4, 1, 1);
         maxCount = new JComboBox(markString);
-        AddComponenter.add(jPanelID, maxCount, 2, 4, 1, 1);
+        AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
 
         frame.add(jPanelID, BorderLayout.NORTH);
         JButton okButton = new JButton("Поиск");
@@ -82,10 +82,10 @@ public class SearchDialog {
         JMenuBar menuBar = new JMenuBar();
         Font font = new Font("Verdana", Font.ITALIC, 12);
 
-        JMenu table = new JMenu("Table");
+        JMenu table = new JMenu("Таблица");
         table.setFont(font);
 
-        JMenuItem firstPage = new JMenuItem("First page");
+        JMenuItem firstPage = new JMenuItem("Первая страница");
         firstPage.setFont(font);
         table.add(firstPage);
         firstPage.addActionListener(new ActionListener() {
@@ -94,7 +94,7 @@ public class SearchDialog {
             }
         });
 
-        JMenuItem lastPage = new JMenuItem("Last page");
+        JMenuItem lastPage = new JMenuItem("Поcледняя страница");
         lastPage.setFont(font);
         table.add(lastPage);
         lastPage.addActionListener(new ActionListener() {
@@ -102,7 +102,7 @@ public class SearchDialog {
                 searchStudentTable.lastPage();
             }
         });
-        JMenuItem nextPage = new JMenuItem("Next page");
+        JMenuItem nextPage = new JMenuItem("Следующая страница");
         nextPage.setFont(font);
         table.add(nextPage);
         nextPage.addActionListener(new ActionListener() {
@@ -111,7 +111,7 @@ public class SearchDialog {
             }
         });
 
-        JMenuItem prevPage = new JMenuItem("Prev page");
+        JMenuItem prevPage = new JMenuItem("Предведущая страница");
         prevPage.setFont(font);
         table.add(prevPage);
         prevPage.addActionListener(new ActionListener() {
@@ -120,7 +120,7 @@ public class SearchDialog {
             }
         });
 
-        JMenu size = new JMenu("Student on page");
+        JMenu size = new JMenu("Студентов на странице");
         size.setFont(font);
         table.add(size);
 
@@ -162,7 +162,7 @@ public class SearchDialog {
         if (isAllCorrect()){
             if (searchStudentTable != null)
                 frame.remove(searchStudentTable);
-            searchStudentTable = new MainTable();
+            searchStudentTable = new StudentTable();
             searchStudentTable.getTableModel().getStudents().clear();
             for (Student student: tableModel.getStudents()) {
                 if (compliesTemplate(student)) {
@@ -181,10 +181,10 @@ public class SearchDialog {
     }
 
     private boolean compliesTemplate(Student student) {
-        if (!lastName.getText().equals("") && !lastName.getText().equals(student.getLastName())) return false;
-        if (!group.getText().equals("") && !group.getText().equals(student.getGroupNumber())) return false;
-        if (!socialWork.getText().equals("") && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
-        if (!socialWork.getText().equals("") && !findSocialWorkBitweenMinAndMax(socialWork.getText(),student.getSocialWork())) return false;
+        if (!lastName.getText().equals(student.getLastName())) return false;
+        if (!isTextEmpty(group.getText()) && !group.getText().equals(student.getGroupNumber())) return false;
+        if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
+        if (!isTextEmpty(socialWork.getText()) && !findSocialWorkBitweenMinAndMax(socialWork.getText(),student.getSocialWork())) return false;
         return true;
     }
 
@@ -218,15 +218,15 @@ public class SearchDialog {
     }
 
     private boolean isAllCorrect() {
-        return !(isNotCorrectLastName() && isNotCorrectSocialWork());
+        return !(isTextEmpty(lastName.getText()) || isNotCorrectText(lastName.getText()) || isNotCorrectText(group.getText()) || isNotCorrectText(socialWork.getText()) );
     }
 
-    private boolean isNotCorrectLastName() {
-        return (lastName.getText().length() > 0 && lastName.getText().charAt(0) == ' ');
+    private boolean isTextEmpty(String text) {
+        return text.equals("");
     }
 
-    private boolean isNotCorrectSocialWork() {
-        return (socialWork.getText().length() > 0 && socialWork.getText().charAt(0) == ' ');
+    private boolean isNotCorrectText(String text) {
+        return (text.length() > 0 && text.charAt(0) == ' ');
     }
 
 

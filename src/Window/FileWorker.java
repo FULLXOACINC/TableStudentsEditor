@@ -24,14 +24,14 @@ import java.util.List;
  */
 public class FileWorker {
 
-    private static final String LAST_NAME = "last_name";
-    private static final String FIRST_NAME = "first_name";
-    private static final String FATHER_NAME = "father_name";
-    private static final String GROUP = "group";
-    private static final String SOCAIL_WORK = "social_work";
-    private static final String STUDENT = "student";
-    private static final String STUDENTS = "students";
-    private static final String EXTENSION = "xml";
+    private final String LAST_NAME = "last_name";
+    private final String FIRST_NAME = "first_name";
+    private final String FATHER_NAME = "father_name";
+    private final String GROUP = "group";
+    private final String SOCAIL_WORK = "social_work";
+    private final String STUDENT = "student";
+    private final String STUDENTS = "students";
+    private final String EXTENSION = "xml";
 
     private TableModel tableModel;
 
@@ -49,12 +49,6 @@ public class FileWorker {
                 SAXParser saxParser = factory.newSAXParser();
                 tableModel.getStudents().clear();
                 DefaultHandler handler = new DefaultHandler() {
-                    private static final String LAST_NAME = "last_name";
-                    private static final String FIRST_NAME = "first_name";
-                    private static final String FATHER_NAME = "father_name";
-                    private static final String GROUP = "group";
-                    private static final String SOCAIL_WORK = "social_work";
-                    private static final String STUDENT = "student";
                     private String lastName = "";
                     private String firstName = "";
                     private String fatherName = "";

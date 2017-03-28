@@ -14,18 +14,19 @@ import java.util.List;
  */
 public class AddDialog {
 
-        private static final String LAST_NAME = "Фамилия";
-        private static final String FIRST_NAME = "Имя";
-        private static final String FATHER_NAME = "Отчество";
-        private static final String GROUP = "Группа";
-        private static final String SEMESTR = " сем.";
-        private MainTable mainTable;
+        private final String LAST_NAME = "Фамилия";
+        private final String FIRST_NAME = "Имя";
+        private final String FATHER_NAME = "Отчество";
+        private final String GROUP = "Группа";
+        private final String SEMESTR = " сем.";
+        private final String ADD = "Добавить";
+        private StudentTable studentTable;
         private TableModel tableModel;
         private Map<String, JTextField> field = new HashMap<String, JTextField>();
 
 
-        public AddDialog(MainTable mainTable) {
-            this.mainTable = mainTable;
+        public AddDialog(StudentTable mainTable) {
+            this.studentTable = mainTable;
             tableModel = mainTable.getTableModel();
             JFrame frame = createFrame();
             frame.pack();
@@ -39,25 +40,25 @@ public class AddDialog {
             JPanel jPanelID = new JPanel();
             jPanelID.setLayout(new GridBagLayout());
             JLabel labelText = new JLabel();
-            AddComponenter.add(jPanelID,labelText, 0, 0, 2, 1);
+            AddComponent.add(jPanelID,labelText, 0, 0, 2, 1);
             String[] labelString = {LAST_NAME, FIRST_NAME, FATHER_NAME, GROUP};
             for (int field = 0; field < labelString.length; field++) {
                 labelText = new JLabel(labelString[field]);
-                AddComponenter.add(jPanelID, labelText, 0, field + 1, 1, 1);
+                AddComponent.add(jPanelID, labelText, 0, field + 1, 1, 1);
                 JTextField jtfField = new JTextField(30);
                 this.field.put(labelString[field],jtfField);
-                AddComponenter.add(jPanelID, jtfField, 1, field + 1, 1, 1);
+                AddComponent.add(jPanelID, jtfField, 1, field + 1, 1, 1);
             }
             for (int semestr=0; semestr < tableModel.SEMESTER_NUMBER;semestr++){
                 labelText = new JLabel((semestr+1)+SEMESTR);
-                AddComponenter.add(jPanelID, labelText, 0, labelString.length+semestr + 2, 1, 1);
+                AddComponent.add(jPanelID, labelText, 0, labelString.length+semestr + 2, 1, 1);
                 JTextField jtfField = new JTextField(30);
                 field.put((semestr+1)+SEMESTR,jtfField);
-                AddComponenter.add(jPanelID, jtfField, 1, labelString.length+semestr + 2, 1, 1);
+                AddComponent.add(jPanelID, jtfField, 1, labelString.length+semestr + 2, 1, 1);
             }
             frame.add(jPanelID, BorderLayout.NORTH);
             frame.add(jPanelID, BorderLayout.NORTH);
-            JButton okButton = new JButton("Добавить");
+            JButton okButton = new JButton(ADD);
             okButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     createNewStudent();
@@ -81,7 +82,7 @@ public class AddDialog {
                         getTextID(FATHER_NAME),
                         getTextID(GROUP),
                         socialwork));
-                mainTable.updateComponent();
+                studentTable.updateComponent();
             } else {
                 JOptionPane.showMessageDialog
                         (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);
@@ -90,15 +91,15 @@ public class AddDialog {
 
 
     private boolean isAllCorrect() {
-        return !(isNotCorrectID(LAST_NAME) && isNotCorrectID(FIRST_NAME) && isNotCorrectID(FATHER_NAME));
+        return !(isNotCorrectText(LAST_NAME) || isNotCorrectText(FIRST_NAME) || isNotCorrectText(GROUP));
     }
 
     private String getTextID(String key) {
         return field.get(key).getText();
     }
 
-    private boolean isNotCorrectID(String key) {
-        return ((field.get(key).getText().equals("")) ||
+    private boolean isNotCorrectText(String key) {
+        return (field.get(key).getText().equals("") ||
                 (field.get(key).getText().length() > 0 && field.get(key).getText().charAt(0) == ' '));
     }
 

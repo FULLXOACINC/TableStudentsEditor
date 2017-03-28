@@ -9,7 +9,7 @@ import java.awt.event.*;
  * Created by alex on 15.3.17.
  */
 public class MainWindow {
-    private final MainTable mainTable;
+    private final StudentTable studentTable;
     private JFrame frame;
     private FileWorker fileWorker;
 
@@ -18,9 +18,9 @@ public class MainWindow {
         frame = new JFrame("Таблица общественных работ студентов");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(createMenuPanel(), BorderLayout.PAGE_START);
-        mainTable = new MainTable();
-        fileWorker = new FileWorker(mainTable.getTableModel());
-        frame.add(mainTable, BorderLayout.CENTER);
+        studentTable = new StudentTable();
+        fileWorker = new FileWorker(studentTable.getTableModel());
+        frame.add(studentTable, BorderLayout.CENTER);
         frame.setJMenuBar(createMenuBar());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         frame.setVisible(true);
@@ -30,33 +30,33 @@ public class MainWindow {
     private JToolBar createMenuPanel() {
         JToolBar toolBar = new JToolBar();
 
-        toolBar.add(AddComponenter.makeButton(new JButton(), "save.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "save.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fileWorker.saveFile();
             }
         }));
-        toolBar.add(AddComponenter.makeButton(new JButton(), "open.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "open.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fileWorker.openFile();
-                mainTable.updateComponent();
+                studentTable.updateComponent();
             }
         }));
         toolBar.addSeparator();
-        toolBar.add(AddComponenter.makeButton(new JButton(), "add.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "add.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new AddDialog(mainTable);
+                new AddDialog(studentTable);
 
             }
         }));
-        toolBar.add(AddComponenter.makeButton(new JButton(), "delete.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DeleteDialog(mainTable);
+                new DeleteDialog(studentTable);
 
             }
         }));
-        toolBar.add(AddComponenter.makeButton(new JButton(), "search.png", new ActionListener() {
+        toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SearchDialog(mainTable.getTableModel());
+                new SearchDialog(studentTable.getTableModel());
 
             }
         }));
@@ -65,25 +65,24 @@ public class MainWindow {
 
     }
 
-
     private JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
-        JMenu fileMenu = new JMenu("File");
+        JMenu fileMenu = new JMenu("Файл");
         Font font = new Font("Verdana", Font.ITALIC, 12);
         fileMenu.setFont(font);
 
 
-        JMenuItem openItem = new JMenuItem("Open");
+        JMenuItem openItem = new JMenuItem("Открыть");
         openItem.setFont(font);
         fileMenu.add(openItem);
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 fileWorker.openFile();
-                mainTable.updateComponent();
+                studentTable.updateComponent();
             }
         });
 
-        JMenuItem saveItem = new JMenuItem("Save");
+        JMenuItem saveItem = new JMenuItem("Сохранить");
         saveItem.setFont(font);
         fileMenu.add(saveItem);
         saveItem.addActionListener(new ActionListener() {
@@ -94,7 +93,7 @@ public class MainWindow {
 
         fileMenu.addSeparator();
 
-        JMenuItem exitItem = new JMenuItem("Exit");
+        JMenuItem exitItem = new JMenuItem("Выйти");
         exitItem.setFont(font);
         fileMenu.add(exitItem);
 
@@ -107,45 +106,45 @@ public class MainWindow {
         menuBar.add(fileMenu);
 
 
-        JMenu table = new JMenu("Table");
+        JMenu table = new JMenu("Таблица");
         table.setFont(font);
 
-        JMenuItem firstPage = new JMenuItem("First page");
+        JMenuItem firstPage = new JMenuItem("Первая страница");
         firstPage.setFont(font);
         table.add(firstPage);
         firstPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.firstPage();
+                studentTable.firstPage();
             }
         });
 
-        JMenuItem lastPage = new JMenuItem("Last page");
+        JMenuItem lastPage = new JMenuItem("Поcледняя страница");
         lastPage.setFont(font);
         table.add(lastPage);
         lastPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.lastPage();
+                studentTable.lastPage();
             }
         });
-        JMenuItem nextPage = new JMenuItem("Next page");
+        JMenuItem nextPage = new JMenuItem("Следующая страница");
         nextPage.setFont(font);
         table.add(nextPage);
         nextPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.nextPage();
+                studentTable.nextPage();
             }
         });
 
-        JMenuItem prevPage = new JMenuItem("Prev page");
+        JMenuItem prevPage = new JMenuItem("Предведущая страница");
         prevPage.setFont(font);
         table.add(prevPage);
         prevPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.prevPage();
+                studentTable.prevPage();
             }
         });
 
-        JMenu size = new JMenu("Student on page");
+        JMenu size = new JMenu("Студентов на странице");
         size.setFont(font);
         table.add(size);
 
@@ -154,8 +153,8 @@ public class MainWindow {
         size.add(fiveSize);
         fiveSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.setStudentOnPage(5);
-                mainTable.updateComponent();
+                studentTable.setStudentOnPage(5);
+                studentTable.updateComponent();
             }
         });
 
@@ -164,8 +163,8 @@ public class MainWindow {
         size.add(tenSize);
         tenSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.setStudentOnPage(10);
-                mainTable.updateComponent();
+                studentTable.setStudentOnPage(10);
+                studentTable.updateComponent();
             }
         });
 
@@ -174,15 +173,14 @@ public class MainWindow {
         size.add(fiftySize);
         fiftySize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainTable.setStudentOnPage(50);
-                mainTable.updateComponent();
+                studentTable.setStudentOnPage(50);
+                studentTable.updateComponent();
             }
         });
 
         menuBar.add(table);
         return menuBar;
     }
-
 
     public static void main(String[] args) {
         new MainWindow();
