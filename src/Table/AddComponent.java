@@ -15,14 +15,6 @@ public class AddComponent {
         container.add(component, gridBagConstr);
     }
 
-    public static void add(Container container, String nameLabel,int gridX, int gridY, int gridWidth, int gridHeight) {
-        JLabel label = new JLabel(nameLabel);
-        label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
-        label.setHorizontalAlignment(JLabel.CENTER);
-        GridBagConstraints gridBagConstr = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
-        container.add(label, gridBagConstr);
-    }
-
     public static JButton makeButton(JButton button, String imgString, ActionListener action){
         button.addActionListener(action);
         ImageIcon img = new ImageIcon(IMG_PATCH + imgString);

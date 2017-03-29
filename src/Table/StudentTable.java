@@ -44,11 +44,11 @@ public class StudentTable extends JComponent{
         table.setLayout(new GridBagLayout());
         List<Student> students = tableModel.getStudents();
         int countStudent=0;
-        AddComponent.add(table, "ФИО", 0, 0, 1, 3);
-        AddComponent.add(table, "Группа", 1, 0, 1, 3);
-        AddComponent.add(table, "Общественная работа", 2, 0, tableModel.SEMESTER_NUMBER * 2, 1);
+        add(table, "ФИО", 0, 0, 1, 3);
+        add(table, "Группа", 1, 0, 1, 3);
+        add(table, "Общественная работа", 2, 0, tableModel.SEMESTER_NUMBER * 2, 1);
         for (int i = 0, x = 2; i < tableModel.SEMESTER_NUMBER; i++, x++) {
-            AddComponent.add(table, (i+1)+" сем.", x, 2, 1, 1);
+            add(table, (i+1)+" сем.", x, 2, 1, 1);
         }
         int firstStudentOnPage = tableModel.getStudentOnPage() * (tableModel.getCurrentPage()- 1);
         int lineInHeaderTable = 3;
@@ -58,10 +58,10 @@ public class StudentTable extends JComponent{
             countStudent++;
             for (int i = 0; i < tableModel.SEMESTER_NUMBER+2 ; i++) {
                 String write = getFieldForStudent(students.get(student), i);
-                AddComponent.add(table, write, i, y, 1, 1);
+                add(table, write, i, y, 1, 1);
             }
         }
-        AddComponent.add(table, "Страница:"+tableModel.getCurrentPage()+"/"+tableModel.getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, tableModel.getStudentOnPage() + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
+        add(table, "Страница:"+tableModel.getCurrentPage()+"/"+tableModel.getNumberMaxPage()+" Студентов на странице:"+countStudent+" Всего студентов:"+students.size(), 0, tableModel.getStudentOnPage() + lineInHeaderTable, tableModel.SEMESTER_NUMBER * 2, 3);
         return table;
     }
 
@@ -134,6 +134,14 @@ public class StudentTable extends JComponent{
     private void updateScrollTable() {
         scrollTable.revalidate();
         scrollTable.repaint();
+    }
+
+    private void add(JPanel panel, String nameLabel,int gridX, int gridY, int gridWidth, int gridHeight) {
+        JLabel label = new JLabel(nameLabel);
+        label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+        label.setHorizontalAlignment(JLabel.CENTER);
+        GridBagConstraints gridBagConstr = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
+        panel.add(label, gridBagConstr);
     }
 
 }
