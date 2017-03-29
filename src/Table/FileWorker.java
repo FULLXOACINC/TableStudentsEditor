@@ -1,6 +1,7 @@
 package Table;
 
-import Table.Model.Student;
+import Window.SocialWork;
+import Window.Student;
 import Table.Model.TableModel;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
@@ -55,7 +56,7 @@ public class FileWorker {
                     private String firstName = "";
                     private String fatherName = "";
                     private String group = "";
-                    private List<String> socialWork = new ArrayList<String>();
+                    private List<SocialWork> socialWork = new ArrayList<SocialWork>();
 
                     boolean isSocialWork = false;
 
@@ -77,7 +78,7 @@ public class FileWorker {
                     public void endElement(String uri,
                                            String localName, String qName) throws SAXException {
                         if(socialWork.size()==tableModel.SEMESTER_NUMBER){
-                            tableModel.getStudents().add(new Student(lastName, firstName, fatherName, group, new ArrayList<String>(socialWork) ));
+                            tableModel.getStudents().add(new Student(lastName, firstName, fatherName, group, new ArrayList<SocialWork>(socialWork) ));
                             socialWork.clear();
                         }
                     }
@@ -86,7 +87,7 @@ public class FileWorker {
                     public void characters(char ch[],
                                            int start, int length) throws SAXException {
                         if (isSocialWork) {
-                            socialWork.add(new String(ch, start, length));
+                            socialWork.add(new SocialWork(new String(ch, start, length)));
                             isSocialWork = false;
                         }
                     }
@@ -131,9 +132,9 @@ public class FileWorker {
                     studentEl.setAttributeNode(attr);
 
 
-                    for (String socialWork : student.getSocialWork()) {
+                    for (SocialWork socialWork : student.getSocialWork()) {
                         Element firstname = doc.createElement(SOCAIL_WORK);
-                        firstname.appendChild(doc.createTextNode(socialWork));
+                        firstname.appendChild(doc.createTextNode(socialWork.getWork()));
                         studentEl.appendChild(firstname);
                     }
 

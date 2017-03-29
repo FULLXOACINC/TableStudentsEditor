@@ -2,7 +2,7 @@ package Table.Dialog;
 
 
 import Table.AddComponent;
-import Table.Model.Student;
+import Window.*;
 import Table.StudentTable;
 import Table.Model.TableModel;
 
@@ -75,12 +75,12 @@ public class AddDialog {
 
         private void createNewStudent() {
             if (isAllCorrect()){
-                List<String> socialwork = new ArrayList<String>();
+                List<SocialWork> socialwork = new ArrayList<SocialWork>();
                 for (int index=1;index<=tableModel.SEMESTER_NUMBER;index++) {
                     if(getTextValue(index+SEMESTR).equals(""))
-                        socialwork.add("-");
+                        socialwork.add(new SocialWork("-"));
                     else
-                        socialwork.add(getTextValue(index+SEMESTR));
+                        socialwork.add(new SocialWork(getTextValue(index+SEMESTR)));
                 }
                 tableModel.getStudents().add(new Student(getTextValue(LAST_NAME),
                         getTextValue(FIRST_NAME),

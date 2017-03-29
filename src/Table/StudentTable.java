@@ -1,6 +1,6 @@
 package Table;
 
-import Table.Model.Student;
+import Window.Student;
 import Table.Model.TableModel;
 
 import javax.swing.*;
@@ -116,7 +116,7 @@ public class StudentTable extends JComponent{
         if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getFatherName();
         else if (i == 1) return student.getGroupNumber();
         else {
-            return student.getSocialWork().get(i-2);
+            return student.getSocialWork().get(i-2).getWork();
         }
     }
 
@@ -140,8 +140,8 @@ public class StudentTable extends JComponent{
         JLabel label = new JLabel(nameLabel);
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         label.setHorizontalAlignment(JLabel.CENTER);
-        GridBagConstraints gridBagConstr = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
-        panel.add(label, gridBagConstr);
+        GridBagConstraints gridBagConstraints = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
+        panel.add(label, gridBagConstraints);
     }
 
 }

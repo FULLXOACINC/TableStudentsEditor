@@ -1,5 +1,7 @@
 package Table.Model;
 
+import Window.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 

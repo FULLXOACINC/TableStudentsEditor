@@ -1,20 +1,23 @@
 package Table.Dialog;
 
 import Table.AddComponent;
-import Table.Model.Student;
 import Table.Model.TableModel;
 import Table.StudentTable;
+import Window.Student;
+import Window.SocialWork;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
+
 
 /**
- * Created by alex on 16.3.17.
+ * Created by alex on 29.3.17.
  */
-public class SearchDialog {
+public class Search {
 
     private TableModel tableModel;
     private JTextField lastName;
@@ -26,18 +29,20 @@ public class SearchDialog {
     private final String SOCIAL_WORK = "Общественная работа:";
     private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private JFrame frame;
-    private StudentTable searchStudentTable;
     private JTextField socialWork;
+    private SearchContext searchContext;
 
-    public SearchDialog(TableModel tableModel) {
+    public Search(TableModel tableModel,SearchStrategy searchStrategy) {
+        searchContext=new SearchContext(searchStrategy);
         this.tableModel = tableModel;
         frame = createFrame();
-        frame.setJMenuBar(createMenuBar());
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
     }
+
+
 
     private JFrame createFrame(){
         JFrame frame = new JFrame("Поиск Студентов");
@@ -83,106 +88,15 @@ public class SearchDialog {
         return frame;
     }
 
-    private JMenuBar createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
-        Font font = new Font("Verdana", Font.ITALIC, 12);
-
-        JMenu table = new JMenu("Таблица");
-        table.setFont(font);
-
-        JMenuItem firstPage = new JMenuItem("Первая страница");
-        firstPage.setFont(font);
-        table.add(firstPage);
-        firstPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().firstPage();
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        JMenuItem lastPage = new JMenuItem("Поcледняя страница");
-        lastPage.setFont(font);
-        table.add(lastPage);
-        lastPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().lastPage();
-                searchStudentTable.updateComponent();
-            }
-        });
-        JMenuItem nextPage = new JMenuItem("Следующая страница");
-        nextPage.setFont(font);
-        table.add(nextPage);
-        nextPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().nextPage();
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        JMenuItem prevPage = new JMenuItem("Предведущая страница");
-        prevPage.setFont(font);
-        table.add(prevPage);
-        prevPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().prevPage();
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        JMenu size = new JMenu("Студентов на странице");
-        size.setFont(font);
-        table.add(size);
-
-        JMenuItem fiveSize = new JMenuItem("5");
-        fiveSize.setFont(font);
-        size.add(fiveSize);
-        fiveSize.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().setStudentOnPage(5);
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        JMenuItem tenSize = new JMenuItem("10");
-        tenSize.setFont(font);
-        size.add(tenSize);
-        tenSize.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().setStudentOnPage(10);
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        JMenuItem fiftySize = new JMenuItem("50");
-        fiftySize.setFont(font);
-        size.add(fiftySize);
-        fiftySize.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                searchStudentTable.getTableModel().setStudentOnPage(50);
-                searchStudentTable.updateComponent();
-            }
-        });
-
-        menuBar.add(table);
-        return menuBar;
-    }
-
     private void searchStudent(){
         if (isAllCorrect()){
-            if (searchStudentTable != null)
-                frame.remove(searchStudentTable);
-            searchStudentTable = new StudentTable();
-            searchStudentTable.getTableModel().getStudents().clear();
+            List <Student> students = new ArrayList<Student>();
             for (Student student: tableModel.getStudents()) {
                 if (compliesTemplate(student)) {
-                    searchStudentTable.getTableModel().getStudents().add(student);
+                    students.add(student);
                 }
             }
-            searchStudentTable.updateComponent();
-            frame.add(searchStudentTable, BorderLayout.CENTER);
-            frame.setSize(new Dimension(850,600));
-            frame.revalidate();
-            frame.repaint();
+            searchContext.executeSearchStrategy(students,frame);
         } else {
             JOptionPane.showMessageDialog
                     (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);
@@ -192,12 +106,12 @@ public class SearchDialog {
     private boolean compliesTemplate(Student student) {
         if (!lastName.getText().equals(student.getLastName())) return false;
         if (!isTextEmpty(group.getText()) && !group.getText().equals(student.getGroupNumber())) return false;
-        if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
+        if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(), student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
         if (!isTextEmpty(socialWork.getText()) && !findSocialWorkBitweenMinAndMax(socialWork.getText(),student.getSocialWork())) return false;
         return true;
     }
 
-    private boolean findSocialWorkBitweenMinAndMax(String searchSocialWork, List<String> student) {
+    private boolean findSocialWorkBitweenMinAndMax(String searchSocialWork, List<SocialWork> student) {
         if(minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-"))
             return true;
 
@@ -209,8 +123,8 @@ public class SearchDialog {
             max=Integer.parseInt((String)maxCount.getSelectedItem());
 
         int count=0;
-        for (String elOfSocialWork:student) {
-            if(elOfSocialWork.equals(searchSocialWork))
+        for (SocialWork elOfSocialWork:student) {
+            if(elOfSocialWork.getWork().equals(searchSocialWork))
                 count++;
         }
         if(count>=min&&count<=max)
@@ -218,9 +132,9 @@ public class SearchDialog {
         return false;
     }
 
-    private boolean findSocialWork(String searchSocialWork, List<String> student) {
-        for (String elOfSocialWork:student) {
-            if(elOfSocialWork.equals(searchSocialWork))
+    private boolean findSocialWork(String searchSocialWork, java.util.List<SocialWork> student) {
+        for (SocialWork elOfSocialWork:student) {
+            if(elOfSocialWork.getWork().equals(searchSocialWork))
                 return true;
         }
         return false;

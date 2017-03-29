@@ -1,4 +1,4 @@
-package Table.Model;
+package Window;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ public class Student {
     private String firstName;
     private String fatherName;
     private String groupNumber;
-    private List<String> socialWork;
+    private List<SocialWork> socialWork;
 
     public Student(String lastName, String firstName, String middleName,
-                   String groupNumber, List<String> socialWork) {
+                   String groupNumber, List<SocialWork> socialWork) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.fatherName = middleName;
@@ -38,7 +38,7 @@ public class Student {
         return groupNumber;
     }
 
-    public List<String> getSocialWork() {
+    public List<SocialWork> getSocialWork() {
         return socialWork;
     }
 }

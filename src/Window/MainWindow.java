@@ -3,7 +3,9 @@ package Window;
 import Table.*;
 import Table.Dialog.AddDialog;
 import Table.Dialog.DeleteDialog;
-import Table.Dialog.SearchDialog;
+import Table.Dialog.Search;
+import Table.Dialog.ViewDialog;
+//import Table.Dialog.SearchDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,14 +57,14 @@ public class MainWindow {
         }));
         toolBar.add(AddComponent.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DeleteDialog(studentTable);
-
+//                new DeleteDialog(studentTable);
+                new Search(studentTable.getTableModel(),new DeleteDialog());
             }
         }));
         toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SearchDialog(studentTable.getTableModel());
-
+//                new SearchDialog(studentTable.getTableModel());
+                new Search(studentTable.getTableModel(),new ViewDialog());
             }
         }));
 
