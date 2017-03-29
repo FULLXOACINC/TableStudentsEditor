@@ -25,7 +25,7 @@ public class StudentTable extends JComponent{
         makePanel();
     }
 
-    public void makePanel() {
+    private void makePanel() {
         JPanel tablePanel = new JPanel();
         tablePanel.setLayout(new BorderLayout());
         tablePanel.add(makeTable(), BorderLayout.NORTH);
@@ -91,12 +91,11 @@ public class StudentTable extends JComponent{
             public void actionPerformed(ActionEvent e) {
                 tableModel.nextPage();
                 updateComponent();
-
             }
         }));
-        String[] size = {"5","10","50"};
-        JComboBox sizeBox = new JComboBox(size);
-        sizeBox.setSelectedIndex(Arrays.asList(size).indexOf(Integer.toString(tableModel.getStudentOnPage())));
+        String[] studentsOnPage = {"5","10","50"};
+        JComboBox sizeBox = new JComboBox(studentsOnPage);
+        sizeBox.setSelectedIndex(Arrays.asList(studentsOnPage).indexOf(Integer.toString(tableModel.getStudentOnPage())));
         sizeBox.setMaximumSize(new Dimension(70,100));
         sizeBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -113,7 +112,7 @@ public class StudentTable extends JComponent{
         return panel;
     }
 
-    public String getFieldForStudent(Student student, int i) {
+    private String getFieldForStudent(Student student, int i) {
         if (i == 0) return student.getLastName() + " " + student.getFirstName() + " " + student.getFatherName();
         else if (i == 1) return student.getGroupNumber();
         else {
@@ -133,7 +132,6 @@ public class StudentTable extends JComponent{
     }
 
     private void updateScrollTable() {
-
         scrollTable.revalidate();
         scrollTable.repaint();
     }

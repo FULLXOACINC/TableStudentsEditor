@@ -146,9 +146,9 @@ public class FileWorker {
                 }
             }
         } catch (ParserConfigurationException pce) {
-            JOptionPane.showMessageDialog(null, "Не получилось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Не удалось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
         } catch (TransformerException tfe) {
-            JOptionPane.showMessageDialog(null, "Не получилось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
+            JOptionPane.showMessageDialog(null, "Не удалось сохранить файл", "Ошибка", JOptionPane.ERROR_MESSAGE | JOptionPane.OK_OPTION);
         }
     }
 

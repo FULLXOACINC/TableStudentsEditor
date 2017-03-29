@@ -20,7 +20,7 @@ public class DeleteDialog {
     private final String LAST_NAME = "Фамилия:";
     private final String GROUP = "Группа:";
     private final String SOCIAL_WORK = "Общественная работа:";
-    private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
+    private final String COUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private final String DELETE = "Удалить";
     private TableModel tableModel;
     private JTextField lastName;
@@ -49,7 +49,7 @@ public class DeleteDialog {
         labelText.setHorizontalAlignment(JLabel.CENTER);
         AddComponent.add(jPanelID,labelText, 0, 0, 3, 1);
 
-        String[] labelString = {LAST_NAME, GROUP,SOCIAL_WORK,CAUNT_OF_SOCIAL_WORK};
+        String[] labelString = {LAST_NAME, GROUP,SOCIAL_WORK, COUNT_OF_SOCIAL_WORK};
         labelText = new JLabel(labelString[0]);
         AddComponent.add(jPanelID,labelText, 0, 1, 1, 1);
 
@@ -75,13 +75,13 @@ public class DeleteDialog {
         AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
 
         frame.add(jPanelID, BorderLayout.NORTH);
-        JButton okButton = new JButton(DELETE);
-        okButton.addActionListener(new ActionListener() {
+        JButton deleteButton = new JButton(DELETE);
+        deleteButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 deleteStudent();
             }
         });
-        frame.add(okButton, BorderLayout.SOUTH);
+        frame.add(deleteButton, BorderLayout.SOUTH);
         return frame;
     }
 

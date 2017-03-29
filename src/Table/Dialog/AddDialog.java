@@ -50,9 +50,9 @@ public class AddDialog {
             for (int field = 0; field < labelString.length; field++) {
                 labelText = new JLabel(labelString[field]);
                 AddComponent.add(jPanelID, labelText, 0, field + 1, 1, 1);
-                JTextField jtfField = new JTextField(30);
-                this.field.put(labelString[field],jtfField);
-                AddComponent.add(jPanelID, jtfField, 1, field + 1, 1, 1);
+                JTextField jtextField = new JTextField(30);
+                this.field.put(labelString[field],jtextField);
+                AddComponent.add(jPanelID, jtextField, 1, field + 1, 1, 1);
             }
             for (int semestr=0; semestr < tableModel.SEMESTER_NUMBER;semestr++){
                 labelText = new JLabel((semestr+1)+SEMESTR);
@@ -63,13 +63,13 @@ public class AddDialog {
             }
             frame.add(jPanelID, BorderLayout.NORTH);
             frame.add(jPanelID, BorderLayout.NORTH);
-            JButton okButton = new JButton(ADD);
-            okButton.addActionListener(new ActionListener() {
+            JButton addButton = new JButton(ADD);
+            addButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     createNewStudent();
                 }
             });
-            frame.add(okButton, BorderLayout.SOUTH);
+            frame.add(addButton, BorderLayout.SOUTH);
             return frame;
         }
 
@@ -77,15 +77,15 @@ public class AddDialog {
             if (isAllCorrect()){
                 List<String> socialwork = new ArrayList<String>();
                 for (int index=1;index<=tableModel.SEMESTER_NUMBER;index++) {
-                    if(getTextID(index+SEMESTR).equals(""))
+                    if(getTextValue(index+SEMESTR).equals(""))
                         socialwork.add("-");
                     else
-                        socialwork.add(getTextID(index+SEMESTR));
+                        socialwork.add(getTextValue(index+SEMESTR));
                 }
-                tableModel.getStudents().add(new Student(getTextID(LAST_NAME),
-                        getTextID(FIRST_NAME),
-                        getTextID(FATHER_NAME),
-                        getTextID(GROUP),
+                tableModel.getStudents().add(new Student(getTextValue(LAST_NAME),
+                        getTextValue(FIRST_NAME),
+                        getTextValue(FATHER_NAME),
+                        getTextValue(GROUP),
                         socialwork));
                 studentTable.updateComponent();
             } else {
@@ -99,7 +99,7 @@ public class AddDialog {
         return !(isNotCorrectText(LAST_NAME) || isNotCorrectText(FIRST_NAME) || isNotCorrectText(GROUP));
     }
 
-    private String getTextID(String key) {
+    private String getTextValue(String key) {
         return field.get(key).getText();
     }
 

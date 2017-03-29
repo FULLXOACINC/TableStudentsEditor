@@ -56,7 +56,7 @@ public class TableModel {
     }
 
     public int getNumberMaxPage() {
-        return (int)((students.size() - 1)/ studentOnPage) + 1;
+        return ((students.size() - 1)/ studentOnPage) + 1;
     }
 
     public void setStudentOnPage(int studentOnPage) {

@@ -73,13 +73,13 @@ public class SearchDialog {
         AddComponent.add(jPanelID, maxCount, 2, 4, 1, 1);
 
         frame.add(jPanelID, BorderLayout.NORTH);
-        JButton okButton = new JButton("Поиск");
-        okButton.addActionListener(new ActionListener() {
+        JButton searchButton = new JButton("Поиск");
+        searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 searchStudent();
             }
         });
-        frame.add(okButton, BorderLayout.SOUTH);
+        frame.add(searchButton, BorderLayout.SOUTH);
         return frame;
     }
 

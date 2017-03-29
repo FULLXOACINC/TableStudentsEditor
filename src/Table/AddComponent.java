@@ -10,16 +10,16 @@ import java.awt.event.ActionListener;
 public class AddComponent {
     private static final String IMG_PATCH = "img/";
 
-    public static void add(Container container, Component component,int gridx, int gridy, int gridwidth, int gridheight) {
-        GridBagConstraints gridBagConstr = new GridBagConstraints(gridx, gridy, gridwidth, gridheight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0);
+    public static void add(Container container, Component component,int gridX, int gridY, int gridWidth, int gridHeight) {
+        GridBagConstraints gridBagConstr = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0);
         container.add(component, gridBagConstr);
     }
 
-    public static void add(Container container, String nameLabel,int gridx, int gridy, int gridwidth, int gridheight) {
+    public static void add(Container container, String nameLabel,int gridX, int gridY, int gridWidth, int gridHeight) {
         JLabel label = new JLabel(nameLabel);
         label.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
         label.setHorizontalAlignment(JLabel.CENTER);
-        GridBagConstraints gridBagConstr = new GridBagConstraints(gridx, gridy, gridwidth, gridheight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
+        GridBagConstraints gridBagConstr = new GridBagConstraints(gridX, gridY, gridWidth, gridHeight, 1.0, 1.0,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0);
         container.add(label, gridBagConstr);
     }
 
