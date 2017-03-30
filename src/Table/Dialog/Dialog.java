@@ -91,18 +91,8 @@ public class Dialog  {
             return new NameAndGroupSearch();
         if(getGroup().equals(""))
             return new NameAndSocialWorkSearch();
-        return null;
+        return new NameAndSocialWorkAndGroupSearch();
     }
 
-    private boolean isAllCorrect() {
-        return !(isTextEmpty(lastName.getText()) || isNotCorrectText(lastName.getText()) || isNotCorrectText(group.getText()) || isNotCorrectText(socialWork.getText()));
-    }
 
-    private boolean isTextEmpty(String text) {
-        return text.equals("");
-    }
-
-    private boolean isNotCorrectText(String text) {
-        return (text.length() > 0 && text.charAt(0) == ' ');
-    }
 }

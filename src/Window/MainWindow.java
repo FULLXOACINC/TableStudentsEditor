@@ -3,6 +3,7 @@ package Window;
 import Table.*;
 import Table.Dialog.AddDialog;
 import Table.Dialog.DeleteDialog;
+import Table.Dialog.SearchDialog;
 //import Table.Dialog.SearchDialog;
 
 import javax.swing.*;
@@ -60,8 +61,8 @@ public class MainWindow {
         }));
         toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                new SearchDialog(studentTable.getTableModel());
-//                new Search(studentTable.getTableModel(),new NameSearch());
+                new SearchDialog(studentTable.getTableModel());
+//                new SearchDialog(studentTable.getTableModel(),new NameSearch());
             }
         }));
 

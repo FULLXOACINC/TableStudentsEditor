@@ -36,17 +36,18 @@ public class DeleteDialog {
 
 
     private void deleteStudent() {
-        List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents(), dialog);
-        tableModel.getStudents().removeAll(searchStudent);
-        mainTable.updateComponent();
-        if (searchStudent.size() > 0) {
-            JOptionPane.showMessageDialog
-                    (null, "Удалено " + searchStudent.size() + " студентов", "Информация", JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog
-                    (null, "Студент не найден", "Внимание", JOptionPane.WARNING_MESSAGE);
+        if (!dialog.getLastName().equals("")) {
+            List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents(), dialog);
+            tableModel.getStudents().removeAll(searchStudent);
+            mainTable.updateComponent();
+            if (searchStudent.size() > 0) {
+                JOptionPane.showMessageDialog
+                        (null, "Удалено " + searchStudent.size() + " студентов", "Информация", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog
+                        (null, "Студент не найден", "Внимание", JOptionPane.WARNING_MESSAGE);
+            }
         }
-
     }
 
 
