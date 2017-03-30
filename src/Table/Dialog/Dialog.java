@@ -89,8 +89,8 @@ public class Dialog  {
             return new NameSearch();
         if(getSocialWork().equals(""))
             return new NameAndGroupSearch();
-        if(getSocialWork().equals(""))
-            return new NameAndGroupSearch();
+        if(getGroup().equals(""))
+            return new NameAndSocialWorkSearch();
         return null;
     }
 

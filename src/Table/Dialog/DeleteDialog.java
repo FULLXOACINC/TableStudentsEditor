@@ -1,15 +1,12 @@
 package Table.Dialog;
 
-import Table.AddComponent;
 import Window.*;
 import Table.StudentTable;
 import Table.Model.TableModel;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -52,43 +49,6 @@ public class DeleteDialog {
 
     }
 
-//    private boolean compliesTemplate(Student student) {
-//        if (!lastName.getText().equals(student.getLastName())) return false;
-//        if (!isTextEmpty(group.getText()) && !group.getText().equals(student.getGroupNumber())) return false;
-//        if (!isTextEmpty(socialWork.getText()) && !findSocialWork(socialWork.getText(),student.getSocialWork()) && minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-")) return false;
-//        if (!isTextEmpty(socialWork.getText()) && !findSocialWorkBitweenMinAndMax(socialWork.getText(),student.getSocialWork())) return false;
-//        return true;
-//    }
-//
-//    private boolean findSocialWorkBitweenMinAndMax(String searchSocialWork, List<SocialWork> student) {
-//        if(minCount.getSelectedItem().equals("-") && maxCount.getSelectedItem().equals("-"))
-//            return true;
-//
-//        int min=0;
-//        if(!minCount.getSelectedItem().equals("-"))
-//            min=Integer.parseInt((String)minCount.getSelectedItem());
-//        int max=0;
-//        if(!maxCount.getSelectedItem().equals("-"))
-//            max=Integer.parseInt((String)maxCount.getSelectedItem());
-//
-//        int count=0;
-//        for (SocialWork elOfSocialWork:student) {
-//            if(elOfSocialWork.getWork().equals(searchSocialWork))
-//                count++;
-//        }
-//        if(count>=min&&count<=max)
-//            return true;
-//        return false;
-//    }
-//
-//    private boolean findSocialWork(String searchSocialWork, List<SocialWork> student) {
-//        for (SocialWork elOfSocialWork:student) {
-//            if(elOfSocialWork.getWork().equals(searchSocialWork))
-//                return true;
-//        }
-//        return false;
-//    }
-//
 
 
 }
