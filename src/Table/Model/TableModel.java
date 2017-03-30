@@ -1,5 +1,7 @@
 package Table.Model;
 
+import Window.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,12 +11,57 @@ import java.util.List;
 public class TableModel {
     public final int SEMESTER_NUMBER = 10;
     private List<Student> students;
+    private int currentPage;
+    private int studentOnPage ;
 
     public TableModel() {
         students = new ArrayList<Student>();
+        currentPage = 1;
+        studentOnPage = 5;
     }
 
     public List<Student> getStudents() {
         return students;
+    }
+
+    public int getStudentOnPage() {
+        return studentOnPage;
+    }
+
+    public int getCurrentPage() {
+        return currentPage;
+    }
+
+    public void nextPage(){
+        boolean hasNextPage=students.size() > studentOnPage * (currentPage - 1) + studentOnPage;
+        if (hasNextPage)
+            currentPage++;
+
+    }
+
+    public void prevPage(){
+        if (currentPage > 1)
+            currentPage--;
+
+    }
+
+    public void firstPage(){
+        if (currentPage > 1)
+            currentPage = 1;
+
+    }
+
+    public void lastPage(){
+        if (currentPage != getNumberMaxPage())
+            currentPage = getNumberMaxPage();
+
+    }
+
+    public int getNumberMaxPage() {
+        return ((students.size() - 1)/ studentOnPage) + 1;
+    }
+
+    public void setStudentOnPage(int studentOnPage) {
+        this.studentOnPage = studentOnPage;
     }
 }

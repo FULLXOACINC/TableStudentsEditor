@@ -4,6 +4,7 @@ import Table.*;
 import Table.Dialog.AddDialog;
 import Table.Dialog.DeleteDialog;
 import Table.Dialog.SearchDialog;
+//import Table.Dialog.SearchDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,13 +57,11 @@ public class MainWindow {
         toolBar.add(AddComponent.makeButton(new JButton(), "delete.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new DeleteDialog(studentTable);
-
             }
         }));
         toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new SearchDialog(studentTable.getTableModel());
-
             }
         }));
 
@@ -119,7 +118,8 @@ public class MainWindow {
         table.add(firstPage);
         firstPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.firstPage();
+                studentTable.getTableModel().firstPage();
+                studentTable.updateComponent();
             }
         });
 
@@ -128,7 +128,8 @@ public class MainWindow {
         table.add(lastPage);
         lastPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.lastPage();
+                studentTable.getTableModel().lastPage();
+                studentTable.updateComponent();
             }
         });
         JMenuItem nextPage = new JMenuItem("Следующая страница");
@@ -136,7 +137,8 @@ public class MainWindow {
         table.add(nextPage);
         nextPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.nextPage();
+                studentTable.getTableModel().nextPage();
+                studentTable.updateComponent();
             }
         });
 
@@ -145,7 +147,8 @@ public class MainWindow {
         table.add(prevPage);
         prevPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.prevPage();
+                studentTable.getTableModel().prevPage();
+                studentTable.updateComponent();
             }
         });
 
@@ -158,7 +161,7 @@ public class MainWindow {
         size.add(fiveSize);
         fiveSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.setStudentOnPage(5);
+                studentTable.getTableModel().setStudentOnPage(5);
                 studentTable.updateComponent();
             }
         });
@@ -168,7 +171,7 @@ public class MainWindow {
         size.add(tenSize);
         tenSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.setStudentOnPage(10);
+                studentTable.getTableModel().setStudentOnPage(10);
                 studentTable.updateComponent();
             }
         });
@@ -178,7 +181,7 @@ public class MainWindow {
         size.add(fiftySize);
         fiftySize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.setStudentOnPage(50);
+                studentTable.getTableModel().setStudentOnPage(50);
                 studentTable.updateComponent();
             }
         });
