@@ -1,10 +1,7 @@
-package Table.Dialog;
+package Table.Dialog.SearchStrategyPackage;
 
-import Table.Model.TableModel;
-import Table.StudentTable;
 import Window.Student;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -18,7 +15,7 @@ public class SearchContext {
         this.searchStrategy=searchStrategy;
     }
 
-    public List<Student> executeSearchStrategy(List<Student> students,Dialog dialog){
+    public List<Student> executeSearchStrategy(List<Student> students, Table.Dialog.Dialog dialog){
         return searchStrategy.execute(students,dialog);
     }
 

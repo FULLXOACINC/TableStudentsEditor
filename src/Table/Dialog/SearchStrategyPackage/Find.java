@@ -1,4 +1,4 @@
-package Table.Dialog;
+package Table.Dialog.SearchStrategyPackage;
 
 import Window.SocialWork;
 

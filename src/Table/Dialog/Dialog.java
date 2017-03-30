@@ -1,6 +1,7 @@
 package Table.Dialog;
 
 import Table.AddComponent;
+import Table.Dialog.SearchStrategyPackage.*;
 
 import javax.swing.*;
 import java.awt.*;

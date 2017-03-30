@@ -1,5 +1,6 @@
-package Table.Dialog;
+package Table.Dialog.SearchStrategyPackage;
 
+import Table.Dialog.Dialog;
 import Window.Student;
 
 import java.util.List;

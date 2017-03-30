@@ -1,12 +1,11 @@
 package Table.Dialog;
 
-import Table.AddComponent;
+import Table.Dialog.SearchStrategyPackage.SearchContext;
+import Table.Dialog.SearchStrategyPackage.SearchStrategy;
 import Table.Model.TableModel;
 import Table.StudentTable;
 import Window.Student;
-import Window.SocialWork;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
 import java.awt.*;

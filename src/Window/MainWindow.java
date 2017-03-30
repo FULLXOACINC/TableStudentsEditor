@@ -62,7 +62,6 @@ public class MainWindow {
         toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new SearchDialog(studentTable.getTableModel());
-//                new SearchDialog(studentTable.getTableModel(),new NameSearch());
             }
         }));
 
