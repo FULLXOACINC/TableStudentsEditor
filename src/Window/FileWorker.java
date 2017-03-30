@@ -1,4 +1,4 @@
-package Table;
+package Window;
 
 import Window.SocialWork;
 import Window.Student;
@@ -36,10 +36,10 @@ public class FileWorker {
     private final String STUDENTS = "students";
     private final String EXTENSION = "xml";
 
-    private TableModel tableModel;
+    private Model model;
 
-    public FileWorker(TableModel tableModel) {
-        this.tableModel = tableModel;
+    public FileWorker(Model model) {
+        this.model = model;
     }
 
     public void openFile() {
@@ -50,7 +50,7 @@ public class FileWorker {
             try {
                 SAXParserFactory factory = SAXParserFactory.newInstance();
                 SAXParser saxParser = factory.newSAXParser();
-                tableModel.getStudents().clear();
+                model.getStudents().clear();
                 DefaultHandler handler = new DefaultHandler() {
                     private String lastName = "";
                     private String firstName = "";
@@ -77,8 +77,8 @@ public class FileWorker {
                     @Override
                     public void endElement(String uri,
                                            String localName, String qName) throws SAXException {
-                        if(socialWork.size()==tableModel.SEMESTER_NUMBER){
-                            tableModel.getStudents().add(new Student(lastName, firstName, fatherName, group, new ArrayList<SocialWork>(socialWork) ));
+                        if(socialWork.size()==model.getSemestrNumber()){
+                            model.getStudents().add(new Student(lastName, firstName, fatherName, group, new ArrayList<SocialWork>(socialWork) ));
                             socialWork.clear();
                         }
                     }
@@ -111,7 +111,7 @@ public class FileWorker {
                 Element rootElement = doc.createElement(STUDENTS);
                 doc.appendChild(rootElement);
 
-                for (Student student : tableModel.getStudents()) {
+                for (Student student : model.getStudents()) {
                     Element studentEl = doc.createElement(STUDENT);
                     rootElement.appendChild(studentEl);
 

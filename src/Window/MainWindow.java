@@ -4,7 +4,6 @@ import Table.*;
 import Table.Dialog.AddDialog;
 import Table.Dialog.DeleteDialog;
 import Table.Dialog.SearchDialog;
-//import Table.Dialog.SearchDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,17 +14,19 @@ import java.awt.event.*;
  * Created by alex on 15.3.17.
  */
 public class MainWindow {
+
     private final StudentTable studentTable;
-    private JFrame frame;
+    private Model model;
     private FileWorker fileWorker;
 
     public MainWindow() {
 
-        frame = new JFrame("Таблица общественных работ студентов");
+        JFrame frame = new JFrame("Таблица общественных работ студентов");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(createMenuPanel(), BorderLayout.PAGE_START);
         studentTable = new StudentTable();
-        fileWorker = new FileWorker(studentTable.getTableModel());
+        model=new Model(studentTable.getTableModel());
+        fileWorker = new FileWorker(model);
         frame.add(studentTable, BorderLayout.CENTER);
         frame.setJMenuBar(createMenuBar());
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -118,7 +119,7 @@ public class MainWindow {
         table.add(firstPage);
         firstPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().firstPage();
+                model.firstPage();
                 studentTable.updateComponent();
             }
         });
@@ -128,7 +129,7 @@ public class MainWindow {
         table.add(lastPage);
         lastPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().lastPage();
+                model.lastPage();
                 studentTable.updateComponent();
             }
         });
@@ -137,7 +138,7 @@ public class MainWindow {
         table.add(nextPage);
         nextPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().nextPage();
+                model.nextPage();
                 studentTable.updateComponent();
             }
         });
@@ -147,7 +148,7 @@ public class MainWindow {
         table.add(prevPage);
         prevPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().prevPage();
+                model.prevPage();
                 studentTable.updateComponent();
             }
         });
@@ -161,7 +162,7 @@ public class MainWindow {
         size.add(fiveSize);
         fiveSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().setStudentOnPage(5);
+                model.setStudentOnPage(5);
                 studentTable.updateComponent();
             }
         });
@@ -171,7 +172,7 @@ public class MainWindow {
         size.add(tenSize);
         tenSize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().setStudentOnPage(10);
+                model.setStudentOnPage(10);
                 studentTable.updateComponent();
             }
         });
@@ -181,7 +182,7 @@ public class MainWindow {
         size.add(fiftySize);
         fiftySize.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                studentTable.getTableModel().setStudentOnPage(50);
+                model.setStudentOnPage(50);
                 studentTable.updateComponent();
             }
         });
