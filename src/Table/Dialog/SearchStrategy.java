@@ -2,7 +2,6 @@ package Table.Dialog;
 
 import Window.Student;
 
-import java.awt.*;
 import java.util.List;
 
 /**
@@ -10,6 +9,7 @@ import java.util.List;
  */
 public interface SearchStrategy {
 
-    void execute(List<Student> searchStudent,Frame frame);
+
+    List<Student> execute(List<Student> students, Dialog dialog);
 
 }

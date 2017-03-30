@@ -89,18 +89,28 @@ public class Search {
     }
 
     private void searchStudent(){
-        if (isAllCorrect()){
-            List <Student> students = new ArrayList<Student>();
-            for (Student student: tableModel.getStudents()) {
-                if (compliesTemplate(student)) {
-                    students.add(student);
-                }
-            }
-            searchContext.executeSearchStrategy(students,frame);
-        } else {
-            JOptionPane.showMessageDialog
-                    (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);
-        }
+//        if (isAllCorrect()){
+//            List <Student> students = new ArrayList<Student>();
+//            for (Student student: tableModel.getStudents()) {
+//                if (compliesTemplate(student)) {
+//                    students.add(student);
+//                }
+//            }
+//            if(searchContext.getSearchStrategy() instanceof NameSearch) {
+//                            if (searchStudentTable != null)
+//                frame.remove(searchStudentTable);
+//                frame.add(searchContext.executeSearchStrategy(students), BorderLayout.CENTER);
+//                frame.setSize(new Dimension(850, 600));
+//                frame.revalidate();
+//                frame.repaint();
+//            }
+//            else
+//                searchContext.executeSearchStrategy(students,tableModel);
+//
+//        } else {
+//            JOptionPane.showMessageDialog
+//                    (null, "Информация не корректна", "Ошибка", JOptionPane.ERROR_MESSAGE);
+//        }
     }
 
     private boolean compliesTemplate(Student student) {
