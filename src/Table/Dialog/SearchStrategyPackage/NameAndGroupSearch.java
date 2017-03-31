@@ -13,9 +13,11 @@ public class NameAndGroupSearch implements SearchStrategy {
     @Override
     public List<Student> execute(List<Student> students, Dialog dialog) {
         List<Student> searchStudent= new ArrayList<Student>();
-        for(Student student:students)
-            if(Find.correctName(dialog.getLastName(),student.getLastName()) || Find.correctGroup(dialog.getGroup(),student.getGroupNumber()))
+        for(Student student:students){
+            boolean correctNameAndGroup =Find.correctName(dialog.getLastName(),student.getLastName()) || Find.correctGroup(dialog.getGroup(),student.getGroupNumber());
+            if(correctNameAndGroup)
                 searchStudent.add(student);
+        }
         return searchStudent;
     }
 

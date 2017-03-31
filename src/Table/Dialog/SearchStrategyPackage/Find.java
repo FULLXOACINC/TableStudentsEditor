@@ -11,9 +11,11 @@ public class Find {
     public static boolean correctGroup(String group, String searchGroup) {
         return group.equals(searchGroup);
     }
+
     public static boolean correctName(String name,String searchName){
         return name.equals(searchName);
     }
+
     public static boolean findSocialWorkBitweenMinAndMax(String searchSocialWork, List<SocialWork> student,String minCount,String maxCount) {
         if (minCount.equals("-") && maxCount.equals("-"))
             return findSocialWork(searchSocialWork,student);
@@ -30,9 +32,7 @@ public class Find {
             if (elOfSocialWork.getWork().equals(searchSocialWork))
                 count++;
         }
-        if (count >= min && count <= max)
-            return true;
-        return false;
+        return count >= min && count <= max;
     }
 
     private static boolean findSocialWork(String searchSocialWork, List<SocialWork> student) {

@@ -15,9 +15,12 @@ public class NameAndSocialWorkAndGroupSearch implements SearchStrategy {
         String minCount = dialog.getMinCount();
         String maxCount = dialog.getMaxCount();
         List<Student> searchStudent= new ArrayList<Student>();
-        for(Student student:students)
-            if(Find.correctName(dialog.getLastName(),student.getLastName())|| Find.correctGroup(dialog.getGroup(),student.getGroupNumber())|| Find.findSocialWorkBitweenMinAndMax(dialog.getSocialWork(),student.getSocialWork(), minCount, maxCount))
+        for(Student student:students){
+            boolean correctNameAndGroupAndSocialWork =Find.correctName(dialog.getLastName(),student.getLastName())|| Find.correctGroup(dialog.getGroup(),student.getGroupNumber())|| Find.findSocialWorkBitweenMinAndMax(dialog.getSocialWork(),student.getSocialWork(), minCount, maxCount);
+            if(correctNameAndGroupAndSocialWork)
                 searchStudent.add(student);
+        }
+
         return searchStudent;
     }
 }

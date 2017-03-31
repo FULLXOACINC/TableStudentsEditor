@@ -62,7 +62,7 @@ public class MainWindow {
         }));
         toolBar.add(AddComponent.makeButton(new JButton(), "search.png", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SearchDialog(studentTable.getTableModel());
+                new SearchDialog(model.getTableModel());
             }
         }));
 
@@ -113,6 +113,32 @@ public class MainWindow {
 
         JMenu table = new JMenu("Таблица");
         table.setFont(font);
+
+        JMenuItem add = new JMenuItem("Добавление");
+        add.setFont(font);
+        table.add(add);
+        add.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new AddDialog(studentTable);
+            }
+        });
+
+        JMenuItem delete = new JMenuItem("Удаление");
+        delete.setFont(font);
+        table.add(delete);
+        delete.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new DeleteDialog(studentTable);
+            }
+        });
+        JMenuItem search = new JMenuItem("Поиск");
+        search.setFont(font);
+        table.add(search);
+        search.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new SearchDialog(model.getTableModel());
+            }
+        });
 
         JMenuItem firstPage = new JMenuItem("Первая страница");
         firstPage.setFont(font);

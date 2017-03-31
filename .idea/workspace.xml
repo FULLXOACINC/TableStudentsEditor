@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f54d368e-f82e-4fbc-a577-c17f09ec736f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Window/Model.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Table/FileWorker.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Table/FileWorker$1.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker$1.class" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/Table/FileWorker.java" afterPath="$PROJECT_DIR$/src/Window/FileWorker.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker$1.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/FileWorker.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$1.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$10.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$10.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$11.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$11.class" />
@@ -15,6 +12,8 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$14.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$14.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$15.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$15.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$2.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$3.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$4.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$5.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$6.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$7.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$7.class" />
@@ -22,7 +21,16 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$9.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow.class" afterPath="$PROJECT_DIR$/out/production/StdTableVar2/Window/MainWindow.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndGroupSearch.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndGroupSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkSearch.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameSearch.java" afterPath="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameSearch.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Window/FileWorker.java" afterPath="$PROJECT_DIR$/src/Window/FileWorker.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Window/MainWindow.java" afterPath="$PROJECT_DIR$/src/Window/MainWindow.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Window/Model.java" afterPath="$PROJECT_DIR$/src/Window/Model.java" />
     </list>
     <ignored path="StdTableVar2.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -44,42 +52,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FileWorker.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Window/FileWorker.java">
+      <file leaf-file-name="Find.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1833">
-              <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
+            <state relative-caret-position="-96">
+              <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2032#2044#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Model.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Window/Model.java">
+      <file leaf-file-name="MainWindow.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Window/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="269">
-              <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
+            <state relative-caret-position="288">
+              <caret line="138" column="38" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#263#264#0" expanded="true" />
-                <element signature="e#305#306#0" expanded="true" />
-                <element signature="e#360#361#0" expanded="true" />
-                <element signature="e#418#419#0" expanded="true" />
-                <element signature="e#459#460#0" expanded="true" />
-                <element signature="e#492#493#0" expanded="true" />
-                <element signature="e#522#523#0" expanded="true" />
-                <element signature="e#559#560#0" expanded="true" />
-                <element signature="e#589#590#0" expanded="true" />
-                <element signature="e#626#627#0" expanded="true" />
-                <element signature="e#656#657#0" expanded="true" />
-                <element signature="e#693#694#0" expanded="true" />
-                <element signature="e#724#725#0" expanded="true" />
-                <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#804#805#0" expanded="true" />
-                <element signature="e#851#852#0" expanded="true" />
+                <element signature="e#3768#3769#0" expanded="true" />
+                <element signature="e#3827#3828#0" expanded="true" />
+                <element signature="e#4064#4065#0" expanded="true" />
+                <element signature="e#4126#4127#0" expanded="true" />
+                <element signature="e#4359#4360#0" expanded="true" />
+                <element signature="e#4430#4431#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -137,13 +134,17 @@
         <option value="$PROJECT_DIR$/src/Table/Dialog/Search.java" />
         <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategy/NameAndSocialWorkSearch.java" />
         <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategy/NameAndGroupSearch.java" />
-        <option value="$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java" />
         <option value="$PROJECT_DIR$/src/Table/Dialog/Dialog.java" />
-        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java" />
-        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java" />
-        <option value="$PROJECT_DIR$/src/Window/MainWindow.java" />
-        <option value="$PROJECT_DIR$/src/Window/Model.java" />
         <option value="$PROJECT_DIR$/src/Window/FileWorker.java" />
+        <option value="$PROJECT_DIR$/src/Window/Model.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameSearch.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkSearch.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndGroupSearch.java" />
+        <option value="$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java" />
+        <option value="$PROJECT_DIR$/src/Window/MainWindow.java" />
       </list>
     </option>
   </component>
@@ -165,6 +166,28 @@
     <option name="y" value="24" />
     <option name="width" value="1285" />
     <option name="height" value="744" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Control flow issuesJava</id>
+          </State>
+          <State>
+            <id>Java</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>TrivialIf</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -810,12 +833,12 @@
       <workItem from="1490717123628" duration="12769000" />
       <workItem from="1490764161263" duration="5691000" />
       <workItem from="1490814605189" duration="12263000" />
-      <workItem from="1490891758372" duration="20985000" />
+      <workItem from="1490891758372" duration="22633000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129426000" />
+    <option name="totallyTimeSpent" value="131074000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="81" y="24" width="1285" height="744" extended-state="6" />
@@ -835,7 +858,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24939467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3003096" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3003096" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1042,8 +1065,12 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2136#2137#0" expanded="true" />
-            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#3768#3769#0" expanded="true" />
+            <element signature="e#3827#3828#0" expanded="true" />
+            <element signature="e#4064#4065#0" expanded="true" />
+            <element signature="e#4126#4127#0" expanded="true" />
+            <element signature="e#4359#4360#0" expanded="true" />
+            <element signature="e#4430#4431#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1078,8 +1105,12 @@
           <caret line="287" column="0" selection-start-line="287" selection-start-column="0" selection-end-line="287" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2136#2137#0" expanded="true" />
-            <element signature="e#2214#2215#0" expanded="true" />
+            <element signature="e#3768#3769#0" expanded="true" />
+            <element signature="e#3827#3828#0" expanded="true" />
+            <element signature="e#4064#4065#0" expanded="true" />
+            <element signature="e#4126#4127#0" expanded="true" />
+            <element signature="e#4359#4360#0" expanded="true" />
+            <element signature="e#4430#4431#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1114,20 +1145,6 @@
     <entry file="file://$PROJECT_DIR$/src/Window/1112.xml" />
     <entry file="file://$PROJECT_DIR$/img/test.xml" />
     <entry file="file://$PROJECT_DIR$/src/Window/UserHandler.java" />
-    <entry file="file://$PROJECT_DIR$/src/Table/AddComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/SocialWork.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Table/Dialog/AddDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="751">
@@ -1135,14 +1152,6 @@
           <folding>
             <element signature="e#3005#3017#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/Student.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1156,32 +1165,130 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/SearchContext.java">
+    <entry file="file://$PROJECT_DIR$/src/Window/FileWorker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
+        <state relative-caret-position="-288">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1949#1961#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/Model.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+          <folding>
+            <element signature="e#210#211#0" expanded="true" />
+            <element signature="e#252#253#0" expanded="true" />
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#365#366#0" expanded="true" />
+            <element signature="e#406#407#0" expanded="true" />
+            <element signature="e#439#440#0" expanded="true" />
+            <element signature="e#469#470#0" expanded="true" />
+            <element signature="e#506#507#0" expanded="true" />
+            <element signature="e#536#537#0" expanded="true" />
+            <element signature="e#573#574#0" expanded="true" />
+            <element signature="e#603#604#0" expanded="true" />
+            <element signature="e#640#641#0" expanded="true" />
+            <element signature="e#671#672#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+            <element signature="e#751#752#0" expanded="true" />
+            <element signature="e#798#799#0" expanded="true" />
+            <element signature="e#835#836#0" expanded="true" />
+            <element signature="e#884#885#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/SocialWork.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Window/Student.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/StudentTable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2088">
+          <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java">
+    <entry file="file://$PROJECT_DIR$/src/Table/AddComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+        <state relative-caret-position="234">
+          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#346#347#0" expanded="true" />
-            <element signature="e#392#393#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Model/TableModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="56" selection-start-line="2" selection-start-column="56" selection-end-line="2" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1476">
+          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/SearchContext.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="2" selection-start-line="13" selection-start-column="2" selection-end-line="17" selection-end-column="29" />
+        <state relative-caret-position="270">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#372#381#0" expanded="true" />
@@ -1189,10 +1296,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="54" selection-end-line="18" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#495#504#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="19" column="79" selection-start-line="19" selection-start-column="79" selection-end-line="19" selection-end-column="79" />
+        <state relative-caret-position="165">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#488#497#0" expanded="true" />
@@ -1202,8 +1320,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndGroupSearch.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="79" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+        <state relative-caret-position="192">
+          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#386#395#0" expanded="true" />
@@ -1211,126 +1329,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/NameAndSocialWorkAndGroupSearch.java">
+    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchStrategyPackage/Find.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="18" column="142" selection-start-line="18" selection-start-column="142" selection-end-line="18" selection-end-column="142" />
+        <state relative-caret-position="-96">
+          <caret line="25" column="19" selection-start-line="25" selection-start-column="19" selection-end-line="25" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#495#504#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/DeleteDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="41" column="47" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/SearchDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="54" column="46" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1221#1222#0" expanded="true" />
-            <element signature="e#1268#1269#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/StudentTable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="971">
-          <caret line="130" column="12" selection-start-line="130" selection-start-column="12" selection-end-line="130" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Model/TableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Table/Dialog/Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2426#2427#0" expanded="true" />
-            <element signature="e#2454#2455#0" expanded="true" />
-            <element signature="e#2488#2489#0" expanded="true" />
-            <element signature="e#2529#2530#0" expanded="true" />
-            <element signature="e#2561#2562#0" expanded="true" />
-            <element signature="e#2599#2600#0" expanded="true" />
-            <element signature="e#2634#2635#0" expanded="true" />
-            <element signature="e#2699#2700#0" expanded="true" />
-            <element signature="e#2734#2735#0" expanded="true" />
-            <element signature="e#2799#2800#0" expanded="true" />
-            <element signature="e#2836#2837#0" expanded="true" />
-            <element signature="e#2879#2880#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Window/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+        <state relative-caret-position="288">
+          <caret line="138" column="38" selection-start-line="138" selection-start-column="38" selection-end-line="138" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2136#2137#0" expanded="true" />
-            <element signature="e#2214#2215#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/Model.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="47" column="41" selection-start-line="47" selection-start-column="41" selection-end-line="47" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#305#306#0" expanded="true" />
-            <element signature="e#360#361#0" expanded="true" />
-            <element signature="e#418#419#0" expanded="true" />
-            <element signature="e#459#460#0" expanded="true" />
-            <element signature="e#492#493#0" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#559#560#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-            <element signature="e#626#627#0" expanded="true" />
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#693#694#0" expanded="true" />
-            <element signature="e#724#725#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#804#805#0" expanded="true" />
-            <element signature="e#851#852#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Window/FileWorker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1833">
-          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2032#2044#0" expanded="true" />
+            <element signature="e#3768#3769#0" expanded="true" />
+            <element signature="e#3827#3828#0" expanded="true" />
+            <element signature="e#4064#4065#0" expanded="true" />
+            <element signature="e#4126#4127#0" expanded="true" />
+            <element signature="e#4359#4360#0" expanded="true" />
+            <element signature="e#4430#4431#0" expanded="true" />
           </folding>
         </state>
       </provider>

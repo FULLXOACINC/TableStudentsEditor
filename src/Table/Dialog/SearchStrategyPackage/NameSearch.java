@@ -14,7 +14,7 @@ public class NameSearch implements SearchStrategy {
     public List<Student> execute(List<Student> students, Dialog dialog) {
         List<Student> searchStudent= new ArrayList<Student>();
         for(Student student:students)
-            if(dialog.getLastName().equals(student.getLastName()))
+            if(Find.correctName(dialog.getLastName(),student.getLastName()))
                 searchStudent.add(student);
         return searchStudent;
     }

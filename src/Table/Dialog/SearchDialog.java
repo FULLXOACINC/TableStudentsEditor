@@ -1,7 +1,6 @@
 package Table.Dialog;
 
 import Table.Dialog.SearchStrategyPackage.SearchContext;
-import Table.Dialog.SearchStrategyPackage.SearchStrategy;
 import Table.Model.TableModel;
 import Table.StudentTable;
 import Window.Student;
