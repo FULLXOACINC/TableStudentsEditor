@@ -87,12 +87,12 @@ public class Dialog  {
 
     public SearchStrategy getSearchContext() {
         if(getGroup().equals("") && getSocialWork().equals(""))
-            return new NameSearch();
+            return new NameSearch(getLastName());
         if(getSocialWork().equals(""))
-            return new NameAndGroupSearch();
+            return new NameAndGroupSearch(getLastName(),getGroup());
         if(getGroup().equals(""))
-            return new NameAndSocialWorkSearch();
-        return new NameAndSocialWorkAndGroupSearch();
+            return new NameAndSocialWorkSearch(getLastName(),getSocialWork(),getMinCount(),getMaxCount());
+        return new NameAndSocialWorkAndGroupSearch(getLastName(),getGroup(),getSocialWork(),getMinCount(),getMaxCount());
     }
 
 
