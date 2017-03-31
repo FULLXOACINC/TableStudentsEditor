@@ -19,17 +19,7 @@ public class SearchDialog {
 
     private final Dialog dialog;
     private TableModel tableModel;
-    private JTextField lastName;
-    private JTextField group;
-    private JComboBox minCount;
-    private JComboBox maxCount;
-    private final String LAST_NAME = "Фамилия:";
-    private final String GROUP = "Группа:";
-    private final String SOCIAL_WORK = "Общественная работа:";
-    private final String CAUNT_OF_SOCIAL_WORK = "Каличество общественной работы:";
     private JFrame frame;
-    private JTextField socialWork;
-    private SearchContext searchContext;
     private StudentTable searchStudentTable;
 
     public SearchDialog(TableModel tableModel) {
@@ -51,7 +41,7 @@ public class SearchDialog {
         if (!dialog.getLastName().equals("")) {
             if (searchStudentTable != null)
                 frame.remove(searchStudentTable);
-            List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents(), dialog);
+            List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents());
             searchStudentTable = new StudentTable();
             searchStudentTable.getTableModel().getStudents().addAll(searchStudent);
             searchStudentTable.updateComponent();

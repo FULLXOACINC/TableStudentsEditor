@@ -38,7 +38,7 @@ public class DeleteDialog {
 
     private void deleteStudent() {
         if (!dialog.getLastName().equals("")) {
-            List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents(), dialog);
+            List<Student> searchStudent = new SearchContext(dialog.getSearchContext()).executeSearchStrategy(tableModel.getStudents());
             tableModel.getStudents().removeAll(searchStudent);
             mainTable.updateComponent();
             if (searchStudent.size() > 0) {

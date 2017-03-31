@@ -11,6 +11,6 @@ import java.util.List;
 public interface SearchStrategy {
 
 
-    List<Student> execute(List<Student> students, Dialog dialog);
+    List<Student> execute(List<Student> students);
 
 }

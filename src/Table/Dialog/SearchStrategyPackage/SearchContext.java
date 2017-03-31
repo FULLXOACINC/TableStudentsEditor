@@ -15,8 +15,8 @@ public class SearchContext {
         this.searchStrategy=searchStrategy;
     }
 
-    public List<Student> executeSearchStrategy(List<Student> students, Table.Dialog.Dialog dialog){
-        return searchStrategy.execute(students,dialog);
+    public List<Student> executeSearchStrategy(List<Student> students){
+        return searchStrategy.execute(students);
     }
 
 
